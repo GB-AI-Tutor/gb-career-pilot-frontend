@@ -2,6 +2,7 @@
 # Frontend CI/CD Pipeline
 # File: .github/workflows/frontend-ci.yml
 
+# Frontend CI/CD Pipeline for GB Career Pilot
 name: Frontend CI/CD
 
 on:
@@ -15,6 +16,7 @@ on:
       - 'vite.config.ts'
       - 'tsconfig.json'
       - '.github/workflows/frontend-ci.yml'
+      
   pull_request:
     branches: [main, develop]
     paths:
@@ -73,11 +75,14 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      
+          
+      - name: Install dependencies
+        run: npm ci
+        
       - name: Audit dependencies
         run: npm audit --audit-level=moderate
         continue-on-error: true
-      
+       
       - name: Check for outdated dependencies
         run: npm outdated
         continue-on-error: true
@@ -193,68 +198,79 @@ jobs:
 
   # Job 6: Deploy Preview (PR only)
   deploy-preview:
-    name: Deploy Preview
-    runs-on: ubuntu-latest
-    needs: [build]
-    if: github.event_name == 'pull_request'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      name: Deploy Preview
+      runs-on: ubuntu-latest
+      needs: [build]
+      if: github.event_name == 'pull_request'
       
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-build
-          path: dist/
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+        
+        - name: Install Vercel CLI
+          run: npm install --global vercel@latest
+  
+        - name: Pull Vercel Environment Information
+          run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+          env:
+            VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+            VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  
+        - name: Build Project Artifacts
+          run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+  
+        - name: Deploy Project Artifacts to Vercel
+          id: deploy
+          run: |
+            DEPLOYMENT_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+            echo "url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
+  
+        - name: Comment PR with preview link
+          uses: actions/github-script@v7
+          with:
+            script: |
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '🚀 **Preview Deployment Ready!**\n\nLink: ${{ steps.deploy.outputs.url }}'
+              })
+ 
+    # Job 7: Deploy to Production (Merge to main only) - NOW ACTIVE
+    deploy-production:
+      name: Deploy to Production
+      runs-on: ubuntu-latest
+      needs: [build]
+      # This job only runs when a PR is merged into main (triggering a push)
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       
-      - name: Deploy to Vercel Preview
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          # Vercel automatically creates preview deployments
-          echo "🔍 Preview deployment will be available in Vercel dashboard"
-      
-      - name: Comment PR with preview link
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '🔍 Preview deployment is ready! Check Vercel dashboard for link.'
-            })
-        continue-on-error: true
-
-  # Job 7: Deploy to Production (main branch only)
-  deploy-production:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    needs: [build]
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Deploy to Vercel Production
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          # Vercel automatically deploys from main branch
-          echo "🚀 Deploying to Vercel production..."
-      
-      - name: Send Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        run: |
-          curl -H "Content-Type: application/json" \
-            -d "{\"content\": \"✅ Frontend deployed to production! Commit: ${{ github.sha }}\"}" \
-            $DISCORD_WEBHOOK
-        continue-on-error: true
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+  
+        - name: Install Vercel CLI
+          run: npm install --global vercel@latest
+  
+        - name: Pull Vercel Environment Information
+          run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+          env:
+            VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+            VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  
+        - name: Build Project Artifacts
+          run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+  
+        - name: Deploy Project Artifacts to Vercel
+          run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+  
+        - name: Send Discord notification
+          env:
+            DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          run: |
+            curl -H "Content-Type: application/json" \
+              -d "{\"content\": \"🚀 **Frontend Deployed to Production!**\nCommit: ${{ github.sha }}\nBranch: main\"}" \
+              $DISCORD_WEBHOOK
+     
 
   # Job 8: Summary
   all-checks-passed:
