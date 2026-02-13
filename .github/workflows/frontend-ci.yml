@@ -234,12 +234,10 @@ jobs:
                 repo: context.repo.repo,
                 body: '🚀 **Preview Deployment Ready!**\n\nLink: ${{ steps.deploy.outputs.url }}'
               })
-
   deploy-production:
       name: Deploy to Production
       runs-on: ubuntu-latest
       needs: [build]
-      # This job only runs when a PR is merged into main (triggering a push)
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       
       steps:
@@ -249,27 +247,36 @@ jobs:
         - name: Install Vercel CLI
           run: npm install --global vercel@latest
   
-        - name: Pull Vercel Environment Information
-          run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        - name: Deploy to Vercel
+          id: deploy_step # We give this step an ID to reference its output
+          run: |
+            # The --prod flag tells Vercel this is the live site
+            # We capture the final aliased URL
+            URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --yes)
+            echo "production_url=$URL" >> $GITHUB_OUTPUT
           env:
             VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
             VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  
-        - name: Build Project Artifacts
-          run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-  
-        - name: Deploy Project Artifacts to Vercel
-          run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
   
         - name: Send Discord notification
           env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           run: |
+            # We use the URL captured in the previous step
             curl -H "Content-Type: application/json" \
-              -d "{\"content\": \"🚀 **Frontend Deployed to Production!**\nCommit: ${{ github.sha }}\nBranch: main\"}" \
+              -d '{
+                "embeds": [{
+                  "title": "🚀 Frontend Deployed to Production!",
+                  "description": "The latest changes are now live for GB students.",
+                  "color": 3066993,
+                  "fields": [
+                    { "name": "URL", "value": "${{ steps.deploy_step.outputs.production_url }}", "inline": false },
+                    { "name": "Commit", "value": "`${{ github.sha }}`", "inline": true }
+                  ]
+                }]
+              }' \
               $DISCORD_WEBHOOK
-     
-
+            
   # Job 8: Summary
   all-checks-passed:
     name: All Checks Passed ✅
