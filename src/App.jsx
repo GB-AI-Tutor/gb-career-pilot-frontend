@@ -10,6 +10,7 @@ function App() {
   };
 
   const closeModal = () => {
+
     setIsOpen(false);
   };
 
@@ -22,7 +23,7 @@ function App() {
           🚀 AI Tutor Platform
         </h1>
         <p className="text-lg text-gray-600 max-w-md">
-          Welcome team! Let’s build something amazing together.
+          Welcome team! Let’s build something amazing together and earn something big
         </p>
 
         <TestButton
