@@ -1,19 +1,50 @@
-import { useState } from "react";
-import "./App.css";
-import { TestButton } from "./components/TestButton";
+// src/App.tsx
+import { useEffect, useState } from 'react';
+import { api } from './services/api';
 
 function App() {
-  const [message, setMessage] = useState<string>("Click the button below!");
+  const [status, setStatus] = useState<'loading' | 'connected' | 'error'>('loading');
+  const [backendVersion, setBackendVersion] = useState<string>('');
 
-  const handleButtonClick = () => {
-    setMessage("Success! The button component is working.");
-  };
+  useEffect(() => {
+    // Test backend connection on load
+    api.health()
+      .then((response) => {
+        setStatus('connected');
+        console.log('✅ Backend connected:', response);
+      })
+      .catch((error) => {
+        setStatus('error');
+        console.error('❌ Backend connection failed:', error);
+      });
+  }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-      <h1 className="text-2xl font-bold">{message}</h1>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md">
+        <h1 className="text-3xl font-bold mb-4 text-blue-600">
+          GB AI Tutor
+        </h1>
+        
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2">Backend Status:</h2>
+          {status === 'loading' && (
+            <p className="text-yellow-600">⏳ Connecting...</p>
+          )}
+          {status === 'connected' && (
+            <p className="text-green-600">✅ Connected!</p>
+          )}
+          {status === 'error' && (
+            <p className="text-red-600">❌ Connection Failed</p>
+          )}
+        </div>
 
-      <TestButton label="Test My Component" onClick={handleButtonClick} />
+        <div className="text-sm text-gray-600">
+          <p>Frontend: Vercel</p>
+          <p>Backend: Railway</p>
+          <p>Database: Supabase</p>
+        </div>
+      </div>
     </div>
   );
 }
