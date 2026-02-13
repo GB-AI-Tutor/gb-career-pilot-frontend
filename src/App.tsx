@@ -6,7 +6,7 @@ function App() {
   const [status, setStatus] = useState<"loading" | "connected" | "error">(
     "loading",
   );
-  const [backendVersion, setBackendVersion] = useState<string>("");
+  // const [backendVersion, setBackendVersion] = useState<string>("");
 
   useEffect(() => {
     // Test backend connection on load
