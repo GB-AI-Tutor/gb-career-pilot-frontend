@@ -1,40 +1,41 @@
 // src/App.tsx
-import { useEffect, useState } from 'react';
-import { api } from './services/api';
+import { useEffect, useState } from "react";
+import { api } from "./services/api";
 
 function App() {
-  const [status, setStatus] = useState<'loading' | 'connected' | 'error'>('loading');
-  const [backendVersion, setBackendVersion] = useState<string>('');
+  const [status, setStatus] = useState<"loading" | "connected" | "error">(
+    "loading",
+  );
+  const [backendVersion, setBackendVersion] = useState<string>("");
 
   useEffect(() => {
     // Test backend connection on load
-    api.health()
+    api
+      .health()
       .then((response) => {
-        setStatus('connected');
-        console.log('✅ Backend connected:', response);
+        setStatus("connected");
+        console.log("✅ Backend connected:", response);
       })
       .catch((error) => {
-        setStatus('error');
-        console.error('❌ Backend connection failed:', error);
+        setStatus("error");
+        console.error("❌ Backend connection failed:", error);
       });
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md">
-        <h1 className="text-3xl font-bold mb-4 text-blue-600">
-          GB AI Tutor
-        </h1>
-        
+        <h1 className="text-3xl font-bold mb-4 text-blue-600">GB AI Tutor</h1>
+
         <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Backend Status:</h2>
-          {status === 'loading' && (
+          {status === "loading" && (
             <p className="text-yellow-600">⏳ Connecting...</p>
           )}
-          {status === 'connected' && (
+          {status === "connected" && (
             <p className="text-green-600">✅ Connected!</p>
           )}
-          {status === 'error' && (
+          {status === "error" && (
             <p className="text-red-600">❌ Connection Failed</p>
           )}
         </div>
