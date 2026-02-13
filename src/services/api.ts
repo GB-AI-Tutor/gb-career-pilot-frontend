@@ -50,7 +50,8 @@ export const api = {
   // FIX: Use the University interface instead of 'any'
   getUniversities: () => fetchApi<University[]>("/api/universities"),
 
-  getUniversityById: (id: string) => fetchApi<University>(`/api/universities/${id}`),
+  getUniversityById: (id: string) =>
+    fetchApi<University>(`/api/universities/${id}`),
 
   searchUniversities: (params: {
     field?: string;
