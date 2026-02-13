@@ -247,31 +247,37 @@ jobs:
         - name: Install Vercel CLI
           run: npm install --global vercel@latest
   
-        - name: Deploy to Vercel
-          id: deploy_step # We give this step an ID to reference its output
-          run: |
-            # The --prod flag tells Vercel this is the live site
-            # We capture the final aliased URL
-            URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --yes)
-            echo "production_url=$URL" >> $GITHUB_OUTPUT
+        # 1. PULL: Syncs your GitHub runner with your Vercel Project settings
+        - name: Pull Vercel Environment Information
+          run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
           env:
             VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
             VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  
+        # 2. BUILD: Creates the specialized .vercel/output folder
+        - name: Build Project Artifacts
+          run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+  
+        # 3. DEPLOY: Pushes the prebuilt artifacts to the live site
+        - name: Deploy Project Artifacts to Vercel
+          id: deploy_step
+          run: |
+            DEPLOYMENT_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --yes)
+            echo "production_url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
   
         - name: Send Discord notification
           env:
             DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           run: |
-            # We use the URL captured in the previous step
             curl -H "Content-Type: application/json" \
               -d '{
                 "embeds": [{
                   "title": "🚀 Frontend Deployed to Production!",
-                  "description": "The latest changes are now live for GB students.",
+                  "description": "The latest changes are now live.",
                   "color": 3066993,
                   "fields": [
                     { "name": "URL", "value": "${{ steps.deploy_step.outputs.production_url }}", "inline": false },
-                    { "name": "Commit", "value": "`${{ github.sha }}`", "inline": true }
+                    { "name": "Commit Hash", "value": "`${{ github.sha }}`", "inline": true }
                   ]
                 }]
               }' \
