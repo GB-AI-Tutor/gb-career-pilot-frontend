@@ -2,6 +2,17 @@
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
+// Define the shape of a University object
+export interface University {
+  id: string;
+  name: string;
+  city: string;
+  fee_per_semester: number;
+  min_marks: number;
+  field: string;
+  admission_deadline?: string;
+}
+
 class ApiError extends Error {
   constructor(
     public status: number,
@@ -33,31 +44,28 @@ async function fetchApi<T>(
   return response.json();
 }
 
-// Example API functions
 export const api = {
-  // Health check
   health: () => fetchApi<{ status: string }>("/health"),
 
-  // Universities
-  getUniversities: () => fetchApi<any[]>("/api/universities"),
+  // FIX: Use the University interface instead of 'any'
+  getUniversities: () => fetchApi<University[]>("/api/universities"),
 
-  getUniversityById: (id: string) => fetchApi<any>(`/api/universities/${id}`),
+  getUniversityById: (id: string) => fetchApi<University>(`/api/universities/${id}`),
 
   searchUniversities: (params: {
     field?: string;
     city?: string;
     budget?: number;
   }) => {
+    // FIX: Removed the unused '_' and just used the value 'v'
     const queryString = new URLSearchParams(
       Object.entries(params)
-        .filter(([_, v]) => v !== undefined)
+        .filter(([, v]) => v !== undefined) // Empty first slot skips the key
         .map(([k, v]) => [k, String(v)]),
     ).toString();
 
-    return fetchApi<any[]>(`/api/universities/search?${queryString}`);
+    return fetchApi<University[]>(`/api/universities/search?${queryString}`);
   },
-
-  // Add more API functions as you build features
 };
 
 export { ApiError };
