@@ -83,8 +83,8 @@ jobs:
         continue-on-error: true
        
       - name: Check for outdated dependencies
-        run: npm outdated
-        continue-on-error: true
+        # This '|| true' ensures the step passes even if packages are outdated
+        run: npm outdated || true
 
   # Job 3: Run Tests
   test:
