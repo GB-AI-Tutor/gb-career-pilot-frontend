@@ -7,4 +7,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  test: {
+    globals: true,           // Allows 'expect' and 'it' without importing
+    environment: "jsdom",     // Simulates the browser
+    setupFiles: "./src/setupTests.ts", // Loads jest-dom matchers
+    css: true,               // Ensures Tailwind styles are processed in tests
+  },
 })
