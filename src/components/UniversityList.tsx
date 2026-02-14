@@ -15,7 +15,15 @@ export function UniversityList() {
     try {
       setLoading(true);
       const response = await api.getUniversities();
-      setUniversities(response);
+      const universitiesWithField = response.map((uni) => ({
+        id: uni.id,
+        name: uni.name,
+        city: uni.city,
+        country: uni.country,
+        top_field: uni.top_field ?? '',
+        tuition_fee: uni.tuition_fee,
+      }));
+      setUniversities(universitiesWithField);
       setError(null);
     } catch (err) {
       setError("Failed to load universities");
