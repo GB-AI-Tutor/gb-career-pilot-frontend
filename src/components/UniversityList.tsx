@@ -1,6 +1,6 @@
 // src/components/UniversityList.tsx
-import { useEffect, useState } from 'react';
-import { api, University } from '../services/api';
+import { useEffect, useState } from "react";
+import { api, University } from "../services/api";
 
 export function UniversityList() {
   const [universities, setUniversities] = useState<University[]>([]);
@@ -18,7 +18,7 @@ export function UniversityList() {
       setUniversities(response);
       setError(null);
     } catch (err) {
-      setError('Failed to load universities');
+      setError("Failed to load universities");
       console.error(err);
     } finally {
       setLoading(false);
@@ -46,7 +46,7 @@ export function UniversityList() {
       <h2 className="text-2xl font-bold text-gray-800">
         Universities ({universities.length})
       </h2>
-      
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {universities.map((uni) => (
           <div

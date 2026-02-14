@@ -4,13 +4,12 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 // Define the shape of a University object
 export interface University {
-  id: string;
+  id: number;
   name: string;
   city: string;
-  fee_per_semester: number;
-  min_marks: number;
-  field: string;
-  admission_deadline?: string;
+  country: string;
+  top_field: string;
+  tuition_fee: number;
 }
 
 class ApiError extends Error {
