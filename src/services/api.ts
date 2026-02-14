@@ -1,8 +1,8 @@
 // src/services/api.ts
-
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
-// Define the shape of a University object
+console.log("🔗 API URL:", API_URL);
+
 export interface University {
   id: number;
   name: string;
@@ -10,6 +10,14 @@ export interface University {
   country: string;
   top_field: string;
   tuition_fee: number;
+}
+
+// ✅ FIX: Define response wrapper
+interface ApiResponse<T> {
+  data: T;
+  count: number;
+  limit?: number;
+  offset?: number;
 }
 
 class ApiError extends Error {
@@ -28,6 +36,8 @@ async function fetchApi<T>(
 ): Promise<T> {
   const url = `${API_URL}${endpoint}`;
 
+  console.log("📡 Fetching:", url);
+
   const response = await fetch(url, {
     ...options,
     headers: {
@@ -40,32 +50,46 @@ async function fetchApi<T>(
     throw new ApiError(response.status, `API Error: ${response.statusText}`);
   }
 
-  return response.json();
+  const data = await response.json();
+  console.log("✅ Response:", data);
+  return data;
 }
 
 export const api = {
   health: () => fetchApi<{ status: string }>("/health"),
 
-  // FIX: Use the University interface instead of 'any'
-  getUniversities: () => fetchApi<University[]>("/api/universities"),
+  // ✅ FIX: Correct endpoint + unwrap response
+  getUniversities: async () => {
+    const response = await fetchApi<ApiResponse<University[]>>(
+      "/api/universities", // ✅ Added /api prefix
+    );
+    return response.data; // ✅ Return just the array
+  },
 
   getUniversityById: (id: string) =>
     fetchApi<University>(`/api/universities/${id}`),
 
-  searchUniversities: (params: {
-    field?: string;
+  // ✅ FIX: Correct endpoint + unwrap response
+  searchUniversities: async (params: {
+    name?: string;
     city?: string;
-    budget?: number;
+    country?: string;
   }) => {
-    // FIX: Removed the unused '_' and just used the value 'v'
     const queryString = new URLSearchParams(
       Object.entries(params)
-        .filter(([, v]) => v !== undefined) // Empty first slot skips the key
+        .filter(([, v]) => v !== undefined && v !== "")
         .map(([k, v]) => [k, String(v)]),
     ).toString();
 
-    return fetchApi<University[]>(`/api/universities/search?${queryString}`);
+    const response = await fetchApi<ApiResponse<University[]>>(
+      `/api/universities/search${queryString ? `?${queryString}` : ""}`,
+    );
+
+    return response.data; // ✅ Return just the array
   },
+
+  pingSupabase: () =>
+    fetchApi<{ status: string; message: string }>("/api/supabase-ping"),
 };
 
 export { ApiError };
