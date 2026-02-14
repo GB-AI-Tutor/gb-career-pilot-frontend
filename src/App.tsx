@@ -14,7 +14,7 @@ function App() {
       .health()
       .then((response) => {
         setStatus("connected");
-        console.log("✅ Backend connected:", response);
+        console.log("✅ Backend connected successfully:", response);
       })
       .catch((error) => {
         setStatus("error");
