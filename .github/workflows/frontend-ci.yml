@@ -7,7 +7,7 @@ name: Frontend CI/CD
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main]
     paths:
       - 'src/**'
       - 'public/**'
@@ -18,7 +18,7 @@ on:
       - '.github/workflows/frontend-ci.yml'
       
   pull_request:
-    branches: [main, develop]
+    branches: [main]
     paths:
       - 'src/**'
       - 'public/**'
