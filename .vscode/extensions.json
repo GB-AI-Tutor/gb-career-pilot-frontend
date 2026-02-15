@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",         // Mandatory: Enforces "Zero Any" policy
+    "esbenp.prettier-vscode",        // Auto-formats UI code for CI/CD checks
+    "ms-vscode.vscode-typescript-next", // Enhanced TypeScript support for .tsx
+    "bradlc.vscode-tailwindcss",     // Autocomplete for your Tailwind styles
+    "dsznajder.es7-react-js-snippets", // Boilerplate for React components
+    "formulahendry.auto-rename-tag", // Speeds up HTML/JSX editing
+    "wallabyjs.console-ninja"        // Debugging: Shows logs directly in the editor
+  ]
+}

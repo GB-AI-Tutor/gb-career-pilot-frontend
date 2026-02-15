@@ -16,7 +16,7 @@ dist/
 .env.production
 
 # IDE
-.vscode/
+
 .idea/
 
 # OS
@@ -42,8 +42,8 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+
+
 .idea
 .DS_Store
 *.suo

@@ -1,6 +1,6 @@
 // src/components/UniversityList.tsx
 import { useEffect, useState } from "react";
-import { api, University } from "../services/api";
+import { api, University } from "../api/api";
 
 export function UniversityList() {
   const [universities, setUniversities] = useState<University[]>([]);
