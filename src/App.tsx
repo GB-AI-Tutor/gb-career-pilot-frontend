@@ -16,7 +16,7 @@
 // export default App;
 
 import "./App.css";
-import Registration from "./components/registration";
+import Registration from "./features/registration";
 
 function App() {
   return (
