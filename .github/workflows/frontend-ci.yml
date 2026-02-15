@@ -6,6 +6,11 @@
 name: Frontend CI/CD
 
 on:
+  workflow_run:
+    workflows: ["Backend CI Tests"]
+    types:
+      - completed
+      
   push:
     branches: [main]
     paths:
