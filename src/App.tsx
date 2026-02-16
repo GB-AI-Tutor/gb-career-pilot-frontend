@@ -16,11 +16,7 @@
 // export default App;
 
 import "./App.css";
-<<<<<<< HEAD
 import Registration from "./features/registration";
-=======
-import Registration from "./components/registration";
->>>>>>> 23f1fd7 (Test/registeration)
 
 function App() {
   return (
