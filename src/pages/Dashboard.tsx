@@ -1,7 +1,7 @@
 // src/pages/Dashboard.tsx
 // import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
   const { user, logout } = useAuth();
@@ -9,7 +9,7 @@ export function Dashboard() {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -23,9 +23,11 @@ export function Dashboard() {
               <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                 GB
               </div>
-              <span className="text-xl font-bold text-gray-900">GB AI Tutor</span>
+              <span className="text-xl font-bold text-gray-900">
+                GB AI Tutor
+              </span>
             </div>
-            
+
             {/* User Menu */}
             <div className="flex items-center gap-4">
               <span className="text-gray-700 hidden sm:block">
@@ -57,37 +59,47 @@ export function Dashboard() {
         {/* Profile Card */}
         <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-gray-900">Your Profile</h2>
+            <h2 className="text-xl font-semibold text-gray-900">
+              Your Profile
+            </h2>
             <button className="text-blue-600 hover:text-blue-700 font-medium text-sm">
               Edit Profile
             </button>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <InfoItem label="Email" value={user?.email} icon="📧" />
-            <InfoItem 
-              label="Phone" 
-              value={user?.phone || 'Not provided'} 
+            <InfoItem
+              label="Phone"
+              value={user?.phone || "Not provided"}
               icon="📱"
             />
-            <InfoItem 
-              label="FSc Percentage" 
-              value={user?.fsc_percentage ? `${user.fsc_percentage}%` : 'Not provided'} 
+            <InfoItem
+              label="FSc Percentage"
+              value={
+                user?.fsc_percentage
+                  ? `${user.fsc_percentage}%`
+                  : "Not provided"
+              }
               icon="📊"
             />
-            <InfoItem 
-              label="City" 
-              value={user?.city || 'Not provided'} 
+            <InfoItem
+              label="City"
+              value={user?.city || "Not provided"}
               icon="📍"
             />
-            <InfoItem 
-              label="Field of Interest" 
-              value={user?.field_of_interest || 'Not provided'} 
+            <InfoItem
+              label="Field of Interest"
+              value={user?.field_of_interest || "Not provided"}
               icon="🎓"
             />
-            <InfoItem 
-              label="Member Since" 
-              value={user?.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'} 
+            <InfoItem
+              label="Member Since"
+              value={
+                user?.created_at
+                  ? new Date(user.created_at).toLocaleDateString()
+                  : "N/A"
+              }
               icon="📅"
             />
           </div>
@@ -95,27 +107,29 @@ export function Dashboard() {
 
         {/* Quick Actions */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Quick Actions</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Quick Actions
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <ActionCard
               icon="🔍"
               title="Search Universities"
               description="Find universities matching your profile and budget"
-              onClick={() => navigate('/search')}
+              onClick={() => navigate("/search")}
               color="blue"
             />
             <ActionCard
               icon="💬"
               title="AI Counselor"
               description="Chat with our AI for personalized guidance"
-              onClick={() => navigate('/chat')}
+              onClick={() => navigate("/chat")}
               color="green"
             />
             <ActionCard
               icon="📚"
               title="Study Roadmap"
               description="Get a customized study plan for entrance exams"
-              onClick={() => navigate('/roadmap')}
+              onClick={() => navigate("/roadmap")}
               color="purple"
             />
           </div>
@@ -123,10 +137,15 @@ export function Dashboard() {
 
         {/* Recent Activity */}
         <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Activity</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            Recent Activity
+          </h2>
           <div className="text-center py-8 text-gray-500">
             <p>No recent activity yet</p>
-            <p className="text-sm mt-2">Start by searching for universities or chatting with our AI counselor</p>
+            <p className="text-sm mt-2">
+              Start by searching for universities or chatting with our AI
+              counselor
+            </p>
           </div>
         </div>
       </div>
@@ -135,13 +154,13 @@ export function Dashboard() {
 }
 
 // Info Item Component
-function InfoItem({ 
-  label, 
-  value, 
-  icon 
-}: { 
-  label: string; 
-  value: string | undefined; 
+function InfoItem({
+  label,
+  value,
+  icon,
+}: {
+  label: string;
+  value: string | undefined;
   icon: string;
 }) {
   return (
@@ -156,23 +175,23 @@ function InfoItem({
 }
 
 // Action Card Component
-function ActionCard({ 
-  icon, 
-  title, 
-  description, 
+function ActionCard({
+  icon,
+  title,
+  description,
   onClick,
-  color = 'blue'
-}: { 
-  icon: string; 
-  title: string; 
+  color = "blue",
+}: {
+  icon: string;
+  title: string;
   description: string;
   onClick: () => void;
-  color?: 'blue' | 'green' | 'purple';
+  color?: "blue" | "green" | "purple";
 }) {
   const colorClasses = {
-    blue: 'hover:border-blue-500 hover:shadow-blue-100',
-    green: 'hover:border-green-500 hover:shadow-green-100',
-    purple: 'hover:border-purple-500 hover:shadow-purple-100',
+    blue: "hover:border-blue-500 hover:shadow-blue-100",
+    green: "hover:border-green-500 hover:shadow-green-100",
+    purple: "hover:border-purple-500 hover:shadow-purple-100",
   };
 
   return (

@@ -1,5 +1,5 @@
 // src/api/auth.ts
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 export interface User {
   id: number;
@@ -32,16 +32,16 @@ class AuthApiError extends Error {
   constructor(
     public status: number,
     message: string,
-    public detail?: string
+    public detail?: string,
   ) {
     super(message);
-    this.name = 'AuthApiError';
+    this.name = "AuthApiError";
   }
 }
 
 async function fetchAuth<T>(
   endpoint: string,
-  options?: RequestInit
+  options?: RequestInit,
 ): Promise<T> {
   const url = `${API_URL}${endpoint}`;
 
@@ -49,7 +49,7 @@ async function fetchAuth<T>(
     const response = await fetch(url, {
       ...options,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         ...options?.headers,
       },
     });
@@ -59,8 +59,8 @@ async function fetchAuth<T>(
     if (!response.ok) {
       throw new AuthApiError(
         response.status,
-        data.detail || 'Authentication failed',
-        data.detail
+        data.detail || "Authentication failed",
+        data.detail,
       );
     }
 
@@ -69,7 +69,7 @@ async function fetchAuth<T>(
     if (error instanceof AuthApiError) {
       throw error;
     }
-    throw new AuthApiError(500, 'Network error occurred');
+    throw new AuthApiError(500, "Network error occurred");
   }
 }
 
@@ -78,8 +78,8 @@ export const authApi = {
    * Register a new user
    */
   register: async (data: RegisterRequest): Promise<LoginResponse> => {
-    return fetchAuth<LoginResponse>('/api/auth/register', {
-      method: 'POST',
+    return fetchAuth<LoginResponse>("/api/auth/register", {
+      method: "POST",
       body: JSON.stringify(data),
     });
   },
@@ -88,8 +88,8 @@ export const authApi = {
    * Login user
    */
   login: async (email: string, password: string): Promise<LoginResponse> => {
-    return fetchAuth<LoginResponse>('/api/auth/login', {
-      method: 'POST',
+    return fetchAuth<LoginResponse>("/api/auth/login", {
+      method: "POST",
       body: JSON.stringify({ email, password }),
     });
   },
@@ -98,8 +98,8 @@ export const authApi = {
    * Get current user profile
    */
   getProfile: async (token: string): Promise<User> => {
-    return fetchAuth<User>('/api/auth/me', {
-      method: 'GET',
+    return fetchAuth<User>("/api/auth/me", {
+      method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -111,10 +111,10 @@ export const authApi = {
    */
   updateProfile: async (
     token: string,
-    data: Partial<Omit<User, 'id' | 'email' | 'created_at'>>
+    data: Partial<Omit<User, "id" | "email" | "created_at">>,
   ): Promise<User> => {
-    return fetchAuth<User>('/api/auth/me', {
-      method: 'PUT',
+    return fetchAuth<User>("/api/auth/me", {
+      method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -126,8 +126,8 @@ export const authApi = {
    * Logout user
    */
   logout: async (token: string): Promise<void> => {
-    return fetchAuth<void>('/api/auth/logout', {
-      method: 'POST',
+    return fetchAuth<void>("/api/auth/logout", {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },

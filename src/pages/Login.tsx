@@ -1,32 +1,36 @@
 // src/pages/Login.tsx
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 export function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
-  
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
       await login(email, password);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err: unknown) {
-      console.error('Login error:', err);
-      if (typeof err === 'object' && err !== null) {
+      console.error("Login error:", err);
+      if (typeof err === "object" && err !== null) {
         const errorObj = err as { detail?: string; message?: string };
-        setError(errorObj.detail || errorObj.message || 'Login failed. Please check your credentials.');
+        setError(
+          errorObj.detail ||
+            errorObj.message ||
+            "Login failed. Please check your credentials.",
+        );
       } else {
-        setError('Login failed. Please check your credentials.');
+        setError("Login failed. Please check your credentials.");
       }
     } finally {
       setLoading(false);
@@ -41,8 +45,12 @@ export function Login() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-500 rounded-2xl mb-4">
             <span className="text-3xl font-bold text-white">GB</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-          <p className="text-gray-600">Login to continue your university journey</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Welcome Back
+          </h1>
+          <p className="text-gray-600">
+            Login to continue your university journey
+          </p>
         </div>
 
         {/* Error Message */}
@@ -55,7 +63,10 @@ export function Login() {
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Email Address
             </label>
             <input
@@ -71,7 +82,10 @@ export function Login() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               Password
             </label>
             <input
@@ -97,7 +111,7 @@ export function Login() {
                 <span>Logging in...</span>
               </>
             ) : (
-              'Login'
+              "Login"
             )}
           </button>
         </form>
@@ -116,15 +130,20 @@ export function Login() {
 
         {/* Register Link */}
         <p className="text-center text-gray-600">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-blue-600 hover:text-blue-700 font-semibold">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-blue-600 hover:text-blue-700 font-semibold"
+          >
             Sign up
           </Link>
         </p>
 
         {/* Test Credentials (Remove in production) */}
         <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-xs text-blue-700 font-semibold mb-1">Test Credentials:</p>
+          <p className="text-xs text-blue-700 font-semibold mb-1">
+            Test Credentials:
+          </p>
           <p className="text-xs text-blue-600">Email: test@example.com</p>
           <p className="text-xs text-blue-600">Password: Test1234!</p>
         </div>

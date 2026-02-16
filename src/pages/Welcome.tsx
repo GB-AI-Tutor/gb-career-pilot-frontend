@@ -1,8 +1,8 @@
 // src/pages/Welcome.tsx
 // import React from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { Navigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { Navigate } from "react-router-dom";
 
 export function Welcome() {
   const { isAuthenticated } = useAuth();
@@ -21,17 +21,17 @@ export function Welcome() {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-2xl mb-6 transform hover:scale-110 transition-transform duration-300">
             <span className="text-4xl font-bold text-blue-600">GB</span>
           </div>
-          
+
           {/* Main Title */}
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
             GB AI Tutor
           </h1>
-          
+
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Your AI-powered guide to university admissions in Pakistan
           </p>
-          
+
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
@@ -41,7 +41,7 @@ export function Welcome() {
               <span>Get Started</span>
               <span>→</span>
             </Link>
-            
+
             <Link
               to="/login"
               className="w-full sm:w-auto px-8 py-4 bg-blue-800 text-white font-semibold rounded-xl shadow-lg hover:bg-blue-900 transform hover:-translate-y-1 transition-all duration-200"
@@ -82,14 +82,14 @@ export function Welcome() {
 }
 
 // Feature Card Component
-function FeatureCard({ 
-  icon, 
-  title, 
-  description 
-}: { 
-  icon: string; 
-  title: string; 
-  description: string 
+function FeatureCard({
+  icon,
+  title,
+  description,
+}: {
+  icon: string;
+  title: string;
+  description: string;
 }) {
   return (
     <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-white hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1">
