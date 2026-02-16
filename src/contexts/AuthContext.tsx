@@ -1,7 +1,6 @@
 // src/contexts/AuthContext.tsx
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { authApi, User } from "../api/auth";
-
 interface AuthContextType {
   user: User | null;
   token: string | null;
@@ -112,11 +111,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+export { AuthContext };
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-}
+// useAuth hook moved to a separate file: useAuth.ts

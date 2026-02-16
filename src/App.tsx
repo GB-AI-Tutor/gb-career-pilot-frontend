@@ -23,7 +23,6 @@ import { Dashboard } from "./pages/Dashboard";
 
 // export default App;
 
-
 function App() {
   return (
     <BrowserRouter>

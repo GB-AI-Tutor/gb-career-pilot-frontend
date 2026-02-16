@@ -1,7 +1,7 @@
 // src/pages/Welcome.tsx
 // import React from 'react';
 import { Link } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { Navigate } from "react-router-dom";
 
 export function Welcome() {
