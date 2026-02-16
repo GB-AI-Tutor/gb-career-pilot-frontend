@@ -7,7 +7,6 @@ import { Registration } from "./pages/Registeration";
 import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
 
-
 function App() {
   return (
     <BrowserRouter>
