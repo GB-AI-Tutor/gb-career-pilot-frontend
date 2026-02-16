@@ -6,6 +6,22 @@ import { Welcome } from './pages/Welcome';
 import { Registration } from './pages/Registeration';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
+// import { UniversityList } from "./components/UniversityList";
+
+// function App() {
+//   return (
+//     <div className="min-h-screen bg-gray-100 p-8">
+//       <div className="max-w-7xl mx-auto">
+//         <h1 className="text-4xl font-bold text-center mb-8 text-blue-600">
+//           GB AI Tutor
+//         </h1>
+//         <UniversityList />
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default App;
 
 function App() {
   return (
