@@ -47,12 +47,12 @@
     "vitest": "^4.0.18"
   },
   "lint-staged": {
-  "src/**/*.{ts,tsx}": [
-    "eslint --fix",
-    "prettier --write"
-  ],
-  "src/**/*.css": [
-    "prettier --write"
-  ]
-}
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.css": [
+      "prettier --write"
+    ]
+  }
 }
