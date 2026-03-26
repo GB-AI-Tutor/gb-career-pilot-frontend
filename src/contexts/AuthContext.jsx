@@ -93,9 +93,10 @@ export const AuthProvider = ({ children }) => {
   const updateProfile = async (userData) => {
     try {
       const response = await usersAPI.updateUser(userData);
+      const updatedProfile = response?.data ?? response;
       
       // Update local user data
-      const updatedUser = { ...user, ...response.data };
+      const updatedUser = { ...user, ...updatedProfile };
       setUser(updatedUser);
       tokenStorage.setUser(updatedUser);
       

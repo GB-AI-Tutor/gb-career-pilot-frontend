@@ -10,7 +10,7 @@ const ProgramCard = ({ program }) => {
   return (
     <Card className="hover:shadow-lg transition-shadow ">
       <div className="border-white flex justify-between items-start mb-3">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white flex-1">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-black flex-1">
           {program.name}
         </h3>
         {eligibility.tier && (
@@ -44,8 +44,8 @@ const ProgramCard = ({ program }) => {
         
         <span className={`px-2 py-1 rounded text-xs font-medium ${
           university?.sector === 'Public'
-            ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300'
-            : 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300'
+            ? 'bg-blue-100 dark:bg-blue-900/30 text-black-800 dark:text-black-300'
+            : 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-black-300'
         }`}>
           {university?.sector}
         </span>
