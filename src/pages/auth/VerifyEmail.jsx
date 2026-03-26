@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { authAPI } from '../../api/auth';
-import Card from '../../components/common/Card';
-import Button from '../../components/common/Button';
-import Loader from '../../components/common/Loader';
-import { CheckCircle, XCircle } from 'lucide-react';
+import { CheckCircle, XCircle, Mail, Loader2, Sparkles } from 'lucide-react';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
@@ -44,71 +41,115 @@ const VerifyEmail = () => {
   }, [searchParams, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="max-w-md w-full">
-        <Card className="text-center">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden" 
+         style={{ background: 'linear-gradient(135deg, #FFE66D 0%, #FFB88C 50%, #4ECDC4 100%)' }}>
+      
+      {/* Animated background blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="blob-float absolute -top-20 -left-20 w-96 h-96 rounded-full opacity-20"
+             style={{ background: 'radial-gradient(circle, rgba(255,107,107,0.3) 0%, transparent 70%)', animation: 'blob-float 20s ease-in-out infinite' }} />
+        <div className="blob-float absolute -bottom-20 -right-20 w-96 h-96 rounded-full opacity-20"
+             style={{ background: 'radial-gradient(circle, rgba(78,205,196,0.3) 0%, transparent 70%)', animationDelay: '-7s', animation: 'blob-float 20s ease-in-out infinite' }} />
+      </div>
+
+      <div className="max-w-md w-full relative z-10">
+        {/* Floating mail icon */}
+        <div className="flex justify-center mb-8">
+          <div className="relative">
+            <div className="absolute inset-0 bg-white/40 rounded-full blur-xl" style={{ animation: 'float 3s ease-in-out infinite' }} />
+            <div className="relative bg-white/90 backdrop-blur-md p-6 rounded-full shadow-xl border border-white/50" 
+                 style={{ animation: 'float 3s ease-in-out infinite' }}>
+              <Mail className="w-12 h-12 text-[#FF6B6B]" strokeWidth={2.5} />
+            </div>
+          </div>
+        </div>
+
+        {/* Main card */}
+        <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-8 text-center">
           {status === 'verifying' && (
             <>
-              <Loader size="lg" className="mb-6" />
-              <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+              <div className="inline-flex items-center justify-center mb-6">
+                <Loader2 className="w-12 h-12 text-[#FF6B6B] animate-spin" strokeWidth={2.5} />
+              </div>
+              <h2 className="text-3xl font-bold mb-3 text-[#2C3E50]" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Verifying Your Email
               </h2>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-lg text-[#2C3E50]/70" style={{ fontFamily: 'Manrope, sans-serif' }}>
                 Please wait while we verify your email address...
               </p>
+              <div className="mt-8 flex justify-center gap-2">
+                <div className="w-2 h-2 bg-[#FF6B6B] rounded-full" style={{ animation: 'float 1s ease-in-out infinite' }} />
+                <div className="w-2 h-2 bg-[#FFB88C] rounded-full" style={{ animation: 'float 1s ease-in-out infinite 0.2s' }} />
+                <div className="w-2 h-2 bg-[#4ECDC4] rounded-full" style={{ animation: 'float 1s ease-in-out infinite 0.4s' }} />
+              </div>
             </>
           )}
 
           {status === 'success' && (
             <>
-              <div className="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400" />
+              <div className="inline-flex items-center justify-center mb-6">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-green-400/30 rounded-full animate-ping" />
+                  <div className="relative w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-xl">
+                    <CheckCircle className="w-14 h-14 text-white" strokeWidth={2.5} />
+                  </div>
+                  <Sparkles className="absolute -top-2 -right-2 w-8 h-8 text-yellow-400" style={{ animation: 'float 2s ease-in-out infinite' }} />
+                </div>
               </div>
-              <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
-                Email Verified!
+              <h2 className="text-3xl font-bold mb-3 text-[#2C3E50]" style={{ fontFamily: 'Outfit, sans-serif' }}>
+                Email Verified! 🎉
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-lg text-[#2C3E50]/80 mb-6" style={{ fontFamily: 'Manrope, sans-serif' }}>
                 {message}
               </p>
-              <p className="text-sm text-gray-500 mb-4">
-                Redirecting to login page...
+              <p className="text-sm text-[#2C3E50]/60 mb-6 italic">
+                Redirecting to login page in 3 seconds...
               </p>
               <Link to="/login">
-                <Button>Go to Login Now</Button>
+                <button className="w-full px-6 py-3.5 bg-gradient-to-r from-[#FF6B6B] to-[#FFB88C] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                        style={{ fontFamily: 'Outfit, sans-serif' }}>
+                  Go to Login Now →
+                </button>
               </Link>
             </>
           )}
 
           {status === 'error' && (
             <>
-              <div className="w-20 h-20 bg-red-100 dark:bg-red-900 rounded-full flex items-center justify-center mx-auto mb-6">
-                <XCircle className="w-12 h-12 text-red-600 dark:text-red-400" />
+              <div className="inline-flex items-center justify-center mb-6">
+                <div className="w-24 h-24 bg-gradient-to-br from-red-400 to-rose-500 rounded-full flex items-center justify-center shadow-xl">
+                  <XCircle className="w-14 h-14 text-white" strokeWidth={2.5} />
+                </div>
               </div>
-              <h2 className="text-2xl font-bold mb-2 text-gray-900 dark:text-white">
+              <h2 className="text-3xl font-bold mb-3 text-[#2C3E50]" style={{ fontFamily: 'Outfit, sans-serif' }}>
                 Verification Failed
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-lg text-[#2C3E50]/80 mb-8" style={{ fontFamily: 'Manrope, sans-serif' }}>
                 {message}
               </p>
               <div className="space-y-3">
                 <Link to="/register">
-                  <Button className="w-full">Register Again</Button>
+                  <button className="w-full px-6 py-3.5 bg-gradient-to-r from-[#FF6B6B] to-[#FFB88C] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                          style={{ fontFamily: 'Outfit, sans-serif' }}>
+                    Register Again
+                  </button>
                 </Link>
                 <Link to="/login">
-                  <Button variant="secondary" className="w-full">
+                  <button className="w-full px-6 py-3.5 bg-white text-[#FF6B6B] font-bold rounded-2xl border-2 border-[#FF6B6B] shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                          style={{ fontFamily: 'Outfit, sans-serif' }}>
                     Go to Login
-                  </Button>
+                  </button>
                 </Link>
               </div>
             </>
           )}
-        </Card>
+        </div>
 
+        {/* Back to home link */}
         <div className="mt-8 text-center">
-          <Link
-            to="/"
-            className="text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
-          >
+          <Link to="/" 
+                className="inline-flex items-center gap-2 text-white/90 hover:text-white font-semibold transition-colors duration-200"
+                style={{ fontFamily: 'Manrope, sans-serif', textShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
             ← Back to Home
           </Link>
         </div>
