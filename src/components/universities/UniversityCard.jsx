@@ -15,7 +15,7 @@ const UniversityCard = ({ university, isFavorite = false, onFavoriteToggle }) =>
       </div>
 
       <div className="pr-12">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+        <h3 className="text-xl text-black font-semibold text-gray-900 mb-2">
           {university.name}
         </h3>
 
@@ -43,10 +43,10 @@ const UniversityCard = ({ university, isFavorite = false, onFavoriteToggle }) =>
         <div className="mt-4 flex flex-wrap gap-2">
           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
             university.sector === 'Public'
-              ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300'
+              ? 'bg-blue-100 text-black-800 dark:bg-blue-900/30 dark:text-black-300'
               : university.sector === 'Private'
-              ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300'
-              : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
+              ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-black-300'
+              : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-black-300'
           }`}>
             {university.sector}
           </span>
