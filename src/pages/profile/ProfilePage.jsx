@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Save, User, Phone, MapPin, BookOpen, Award, Mail, Sparkles, CheckCircle, Clock, Loader2 } from 'lucide-react';
 import { FIELD_TYPES } from '../../utils/constants';

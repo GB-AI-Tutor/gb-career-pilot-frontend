@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import Loader from '../common/Loader';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
 const ChatInterface = ({ conversationId, onConversationIdChange }) => {

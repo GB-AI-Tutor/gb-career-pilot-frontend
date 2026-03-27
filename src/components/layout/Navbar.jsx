@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { createElement, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import { Menu, X, User, LogOut, Settings, MessageSquare, GraduationCap, Search } from 'lucide-react';
 import Button from '../common/Button';
 
@@ -38,16 +38,18 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           {isAuthenticated && (
             <div className="hidden md:flex items-center gap-6">
-              {navLinks.map(({ to, label, icon: Icon }) => (
-                <Link
-                  key={to}
-                  to={to}
-                  className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                >
-                  <Icon className="w-4 h-4" />
-                  {label}
-                </Link>
-              ))}
+              {navLinks.map(({ to, label, icon }) => {
+                return (
+                  <Link
+                    key={to}
+                    to={to}
+                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                  >
+                    {createElement(icon, { className: 'w-4 h-4' })}
+                    {label}
+                  </Link>
+                );
+              })}
             </div>
           )}
 
@@ -137,17 +139,19 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isAuthenticated && mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
-            {navLinks.map(({ to, label, icon: Icon }) => (
-              <Link
-                key={to}
-                to={to}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-2 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
-              >
-                <Icon className="w-4 h-4" />
-                {label}
-              </Link>
-            ))}
+            {navLinks.map(({ to, label, icon }) => {
+              return (
+                <Link
+                  key={to}
+                  to={to}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center gap-2 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                >
+                  {createElement(icon, { className: 'w-4 h-4' })}
+                  {label}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>

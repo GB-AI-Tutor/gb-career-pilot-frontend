@@ -5,18 +5,17 @@ import { CheckCircle, XCircle, Mail, Loader2, Sparkles } from 'lucide-react';
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
-  const [status, setStatus] = useState('verifying'); // verifying, success, error
-  const [message, setMessage] = useState('');
+  const token = searchParams.get('token');
+  const [status, setStatus] = useState(token ? 'verifying' : 'error'); // verifying, success, error
+  const [message, setMessage] = useState(token ? '' : 'No verification token provided');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = searchParams.get('token');
-
     if (!token) {
-      setStatus('error');
-      setMessage('No verification token provided');
       return;
     }
+
+    let redirectTimeout;
 
     const verifyEmail = async () => {
       try {
@@ -25,7 +24,7 @@ const VerifyEmail = () => {
         setMessage(response.message || 'Email verified successfully!');
         
         // Redirect to login after 3 seconds
-        setTimeout(() => {
+        redirectTimeout = setTimeout(() => {
           navigate('/login');
         }, 3000);
       } catch (error) {
@@ -38,7 +37,13 @@ const VerifyEmail = () => {
     };
 
     verifyEmail();
-  }, [searchParams, navigate]);
+
+    return () => {
+      if (redirectTimeout) {
+        clearTimeout(redirectTimeout);
+      }
+    };
+  }, [token, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12 relative overflow-hidden" 

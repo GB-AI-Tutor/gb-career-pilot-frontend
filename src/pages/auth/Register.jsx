@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import { UserPlus, Sparkles, ArrowRight, Mail, Lock, User, Phone, MapPin, GraduationCap, BookOpen, Check } from 'lucide-react';
 
 const Register = () => {
