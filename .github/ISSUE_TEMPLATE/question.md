@@ -1,9 +1,9 @@
 ---
 name: Question or Help
 about: Ask a question about the project
-title: '[QUESTION] '
+title: "[QUESTION] "
 labels: question
-assignees: ''
+assignees: ""
 ---
 
 ## ❓ Question
@@ -25,13 +25,14 @@ assignees: ''
 <!-- Provide context that might help answer your question -->
 
 **Related to:**
+
 - [ ] Setup/Installation
 - [ ] Frontend development
 - [ ] Backend development
 - [ ] Deployment
 - [ ] Contributing
 - [ ] Using the application
-- [ ] Other: _______________
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ## 🖥️ Environment (if relevant)
 

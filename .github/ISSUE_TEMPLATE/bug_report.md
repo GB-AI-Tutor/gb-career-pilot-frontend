@@ -1,9 +1,9 @@
 ---
 name: Bug Report
 about: Report a bug to help us improve
-title: '[BUG] '
+title: "[BUG] "
 labels: bug
-assignees: ''
+assignees: ""
 ---
 
 ## 🐛 Bug Description
@@ -37,6 +37,7 @@ assignees: ''
 - **Screen Size:** [e.g., 1920x1080, Mobile 375x667]
 
 **For Backend Issues:**
+
 - **Python Version:** [e.g., 3.10]
 - **OS:** [e.g., Ubuntu 22.04]
 

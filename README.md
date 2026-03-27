@@ -7,7 +7,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-[![License: Dual](https://img.shields.io/badge/License-Dual%20(MIT%2FCommercial)-blue.svg)](./LICENSE.md)
+[![License: Dual](<https://img.shields.io/badge/License-Dual%20(MIT%2FCommercial)-blue.svg>)](./LICENSE.md)
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://raqeebs.app)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
@@ -45,17 +45,17 @@ GB Career Pilot Frontend is a modern, responsive web application built with Reac
 
 ## 🛠️ Tech Stack
 
-| Category | Technologies |
-|----------|-------------|
-| **Framework** | React 19 |
-| **Build Tool** | Vite 5.0+ |
-| **Styling** | TailwindCSS 3.4 |
+| Category             | Technologies                   |
+| -------------------- | ------------------------------ |
+| **Framework**        | React 19                       |
+| **Build Tool**       | Vite 5.0+                      |
+| **Styling**          | TailwindCSS 3.4                |
 | **State Management** | React Context + TanStack Query |
-| **Routing** | React Router v6 |
-| **HTTP Client** | Axios |
-| **Forms** | React Hook Form |
-| **Icons** | Lucide React |
-| **Deployment** | Vercel |
+| **Routing**          | React Router v6                |
+| **HTTP Client**      | Axios                          |
+| **Forms**            | React Hook Form                |
+| **Icons**            | Lucide React                   |
+| **Deployment**       | Vercel                         |
 
 ---
 
@@ -70,12 +70,14 @@ GB Career Pilot Frontend is a modern, responsive web application built with Reac
 ### Installation
 
 1. **Clone repository**
+
    ```bash
    git clone https://github.com/GB-AI-Tutor/gb-career-pilot-frontend.git
    cd gb-career-pilot-frontend
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    # or
@@ -85,12 +87,14 @@ GB Career Pilot Frontend is a modern, responsive web application built with Reac
    ```
 
 3. **Configure environment**
+
    ```bash
    cp .env.example .env
    # Edit .env with your backend API URL
    ```
 
 4. **Start development server**
+
    ```bash
    npm run dev
    # or
@@ -158,30 +162,35 @@ gb-career-pilot-frontend/
 ## 🎨 Key Pages
 
 ### 🏠 Home Page
+
 - Hero section with CTA
 - Features overview
 - University highlights
 - How it works section
 
 ### 💬 AI Chat
+
 - Real-time streaming responses
 - Conversation history
 - Context-aware recommendations
 - Message formatting with markdown
 
 ### 🎓 Universities
+
 - Grid/list view toggle
 - Search and filters
 - University cards with details
 - Pagination
 
 ### 📚 Programs
+
 - Program search
 - Filter by field/degree
 - Program details modal
 - Related universities
 
 ### 👤 Dashboard
+
 - User profile
 - Conversation history
 - Saved universities
@@ -242,6 +251,7 @@ npm run build
 ### Environment Variables on Vercel
 
 Set in Vercel dashboard:
+
 - `VITE_API_BASE_URL` - Backend API URL
 
 ---
@@ -281,6 +291,7 @@ Look for [`good first issue`](https://github.com/GB-AI-Tutor/gb-career-pilot-fro
 ## 📜 License
 
 **Dual-license model:**
+
 - ✅ Free for non-profit (students, NGOs, education)
 - 💼 Commercial license required for businesses
 
@@ -302,7 +313,7 @@ See [SECURITY.md](./SECURITY.md)
 ## 📞 Contact & Community
 
 - 🌐 **Live App:** [raqeebs.app](https://raqeebs.app)
-- 💬 **Discord:** *Coming soon*
+- 💬 **Discord:** _Coming soon_
 - 📧 **Email:** contact@feelandsupport.org
 - 🐛 **Issues:** [GitHub Issues](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/issues)
 - 💡 **Discussions:** [GitHub Discussions](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/discussions)

@@ -1,6 +1,6 @@
-import apiClient from './axios';
+import apiClient from "./axios";
 
-const USERS_BASE = '/api/v1/users';
+const USERS_BASE = "/api/v1/users";
 
 export const usersAPI = {
   // Get current user info
@@ -11,7 +11,10 @@ export const usersAPI = {
 
   // Update user profile
   updateUser: async (userData) => {
-    const response = await apiClient.put(`${USERS_BASE}/update_user_info`, userData);
+    const response = await apiClient.put(
+      `${USERS_BASE}/update_user_info`,
+      userData,
+    );
     return response.data;
   },
 };

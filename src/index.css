@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 /* Google Fonts - Outfit for headings, Manrope for body */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap");
 
 /* Root Variables - Sunrise Scholar Theme */
 :root {
-  --color-coral: #FF6B6B;
-  --color-peach: #FFB88C;
-  --color-yellow: #FFE66D;
-  --color-teal: #4ECDC4;
-  --color-turquoise: #44A08D;
-  --color-cream: #FFF9F0;
-  --color-warm-white: #FFFBF5;
-  --color-charcoal: #2C3E50;
-  --font-display: 'Outfit', sans-serif;
-  --font-body: 'Manrope', sans-serif;
+  --color-coral: #ff6b6b;
+  --color-peach: #ffb88c;
+  --color-yellow: #ffe66d;
+  --color-teal: #4ecdc4;
+  --color-turquoise: #44a08d;
+  --color-cream: #fff9f0;
+  --color-warm-white: #fffbf5;
+  --color-charcoal: #2c3e50;
+  --font-display: "Outfit", sans-serif;
+  --font-body: "Manrope", sans-serif;
 }
 
 body {
@@ -23,20 +23,35 @@ body {
   color: var(--color-charcoal);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 700;
 }
 
 /* Custom animations and effects */
 @keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 @keyframes slide-up {
@@ -71,7 +86,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @keyframes blob-float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1) rotate(0deg);
   }
   33% {
@@ -132,7 +148,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Smooth hover effects */
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .hover-lift:hover {
@@ -154,12 +172,14 @@ html {
 .page-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s, transform 0.3s;
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
 }
 
 /* Chat bubble styles */
 .chat-bubble-user {
-  background: linear-gradient(135deg, #FF6B6B, #FFB88C);
+  background: linear-gradient(135deg, #ff6b6b, #ffb88c);
   color: white;
   border-radius: 1.5rem 1.5rem 0.5rem 1.5rem;
   padding: 1rem 1.5rem;
@@ -168,7 +188,7 @@ html {
 }
 
 .chat-bubble-ai {
-  background: linear-gradient(135deg, #4ECDC4, #44A08D);
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
   color: white;
   border-radius: 1.5rem 1.5rem 1.5rem 0.5rem;
   padding: 1rem 1.5rem;
@@ -203,13 +223,13 @@ html {
   border-radius: 1.5rem;
   font-size: 1rem;
   font-weight: 500;
-  color: #2C3E50;
+  color: #2c3e50;
   transition: all 0.3s ease;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #FF6B6B;
+  border-color: #ff6b6b;
   box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
 }
 
@@ -218,7 +238,7 @@ html {
   left: 1.25rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #FF6B6B;
+  color: #ff6b6b;
   pointer-events: none;
 }
 
@@ -227,7 +247,7 @@ html {
   width: 120px;
   height: 120px;
   border-radius: 2rem;
-  background: linear-gradient(135deg, #FF6B6B, #FFB88C);
+  background: linear-gradient(135deg, #ff6b6b, #ffb88c);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,7 +259,7 @@ html {
 
 /* Button variants */
 .btn-primary {
-  background: linear-gradient(135deg, #FF6B6B, #FFB88C);
+  background: linear-gradient(135deg, #ff6b6b, #ffb88c);
   color: white;
   padding: 1rem 2rem;
   border-radius: 1.5rem;
@@ -257,7 +277,7 @@ html {
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #4ECDC4, #44A08D);
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
   color: white;
   padding: 1rem 2rem;
   border-radius: 1.5rem;
@@ -282,17 +302,17 @@ html {
   font-size: 0.875rem;
   font-weight: 700;
   background: rgba(255, 107, 107, 0.1);
-  color: #FF6B6B;
+  color: #ff6b6b;
 }
 
 .tag-teal {
   background: rgba(78, 205, 196, 0.1);
-  color: #4ECDC4;
+  color: #4ecdc4;
 }
 
 .tag-yellow {
   background: rgba(255, 230, 109, 0.2);
-  color: #E6A23C;
+  color: #e6a23c;
 }
 
 /* Filter sidebar */
@@ -310,7 +330,7 @@ html {
 .filter-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #2C3E50;
+  color: #2c3e50;
   margin-bottom: 0.75rem;
 }
 
@@ -323,7 +343,7 @@ html {
 }
 
 .filter-option:hover {
-  color: #FF6B6B;
+  color: #ff6b6b;
 }
 
 /* Loading states */
@@ -332,8 +352,13 @@ html {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Skeleton loader */
@@ -345,8 +370,12 @@ html {
 }
 
 @keyframes skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Pagination */
@@ -363,20 +392,20 @@ html {
   border-radius: 1rem;
   font-weight: 600;
   background: white;
-  color: #2C3E50;
+  color: #2c3e50;
   border: 2px solid #e5e7eb;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .pagination-btn:hover {
-  border-color: #FF6B6B;
-  color: #FF6B6B;
+  border-color: #ff6b6b;
+  color: #ff6b6b;
   transform: translateY(-2px);
 }
 
 .pagination-btn.active {
-  background: linear-gradient(135deg, #FF6B6B, #FFB88C);
+  background: linear-gradient(135deg, #ff6b6b, #ffb88c);
   color: white;
   border-color: transparent;
 }
@@ -406,7 +435,7 @@ html {
 
 .message-textarea:focus {
   outline: none;
-  border-color: #FF6B6B;
+  border-color: #ff6b6b;
   box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
 }
 
@@ -414,13 +443,13 @@ html {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #FF6B6B, #FFB88C);
+  background: linear-gradient(135deg, #ff6b6b, #ffb88c);
   color: white;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
 }
@@ -465,7 +494,6 @@ html {
   outline-offset: 2px;
   border-radius: 8px;
 }
-
 
 .dark ::-webkit-scrollbar-track {
   background: #1e293b;

@@ -1,8 +1,17 @@
-import { createElement, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { Menu, X, User, LogOut, Settings, MessageSquare, GraduationCap, Search } from 'lucide-react';
-import Button from '../common/Button';
+import { createElement, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import {
+  Menu,
+  X,
+  User,
+  LogOut,
+  Settings,
+  MessageSquare,
+  GraduationCap,
+  Search,
+} from "lucide-react";
+import Button from "../common/Button";
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
@@ -12,13 +21,13 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   const navLinks = [
-    { to: '/chat', label: 'AI Chat', icon: MessageSquare },
-    { to: '/universities', label: 'Universities', icon: GraduationCap },
-    { to: '/programs', label: 'Programs', icon: Search },
+    { to: "/chat", label: "AI Chat", icon: MessageSquare },
+    { to: "/universities", label: "Universities", icon: GraduationCap },
+    { to: "/programs", label: "Programs", icon: Search },
   ];
 
   return (
@@ -45,7 +54,7 @@ const Navbar = () => {
                     to={to}
                     className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                   >
-                    {createElement(icon, { className: 'w-4 h-4' })}
+                    {createElement(icon, { className: "w-4 h-4" })}
                     {label}
                   </Link>
                 );
@@ -62,10 +71,10 @@ const Navbar = () => {
                   className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold">
-                    {user?.name?.charAt(0).toUpperCase() || 'U'}
+                    {user?.name?.charAt(0).toUpperCase() || "U"}
                   </div>
                   <span className="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {user?.name || 'User'}
+                    {user?.name || "User"}
                   </span>
                 </button>
 
@@ -113,9 +122,7 @@ const Navbar = () => {
                   </Button>
                 </Link>
                 <Link to="/register">
-                  <Button size="sm">
-                    Get Started
-                  </Button>
+                  <Button size="sm">Get Started</Button>
                 </Link>
               </div>
             )}
@@ -147,7 +154,7 @@ const Navbar = () => {
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center gap-2 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
                 >
-                  {createElement(icon, { className: 'w-4 h-4' })}
+                  {createElement(icon, { className: "w-4 h-4" })}
                   {label}
                 </Link>
               );

@@ -1,9 +1,13 @@
-import { MapPin, DollarSign, Award } from 'lucide-react';
-import Card from '../common/Card';
-import FavoriteButton from './FavoriteButton';
-import { formatCurrency } from '../../utils/formatters';
+import { MapPin, DollarSign, Award } from "lucide-react";
+import Card from "../common/Card";
+import FavoriteButton from "./FavoriteButton";
+import { formatCurrency } from "../../utils/formatters";
 
-const UniversityCard = ({ university, isFavorite = false, onFavoriteToggle }) => {
+const UniversityCard = ({
+  university,
+  isFavorite = false,
+  onFavoriteToggle,
+}) => {
   return (
     <Card className="hover:shadow-lg transition-shadow cursor-pointer relative">
       <div className="absolute top-4 right-4">
@@ -28,7 +32,9 @@ const UniversityCard = ({ university, isFavorite = false, onFavoriteToggle }) =>
           {university.fee_per_semester && (
             <div className="flex items-center gap-2">
               <DollarSign className="w-4 h-4" />
-              <span>{formatCurrency(university.fee_per_semester)}/semester</span>
+              <span>
+                {formatCurrency(university.fee_per_semester)}/semester
+              </span>
             </div>
           )}
 
@@ -41,13 +47,15 @@ const UniversityCard = ({ university, isFavorite = false, onFavoriteToggle }) =>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-            university.sector === 'Public'
-              ? 'bg-blue-100 text-black-800 dark:bg-blue-900/30 dark:text-black-300'
-              : university.sector === 'Private'
-              ? 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-black-300'
-              : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-black-300'
-          }`}>
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-medium ${
+              university.sector === "Public"
+                ? "bg-blue-100 text-black-800 dark:bg-blue-900/30 dark:text-black-300"
+                : university.sector === "Private"
+                  ? "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-black-300"
+                  : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-black-300"
+            }`}
+          >
             {university.sector}
           </span>
 

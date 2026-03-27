@@ -1,18 +1,18 @@
 // Format currency
 export const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('en-PK', {
-    style: 'currency',
-    currency: 'PKR',
+  return new Intl.NumberFormat("en-PK", {
+    style: "currency",
+    currency: "PKR",
     minimumFractionDigits: 0,
   }).format(amount);
 };
 
 // Format date
 export const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 };
 
@@ -24,15 +24,15 @@ export const formatPercentage = (value) => {
 // Truncate text
 export const truncateText = (text, maxLength = 100) => {
   if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + '...';
+  return text.slice(0, maxLength) + "...";
 };
 
 // Get initials from name
 export const getInitials = (name) => {
   return name
-    .split(' ')
-    .map(word => word[0])
-    .join('')
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
     .toUpperCase()
     .slice(0, 2);
 };

@@ -1,32 +1,29 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import Button from '../../components/common/Button';
-import Input from '../../components/common/Input';
-import Card from '../../components/common/Card';
-import { LogIn, Sparkles, ArrowRight, Mail, Lock } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { LogIn, ArrowRight, Mail, Lock } from "lucide-react";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   // Redirect if already logged in
   if (isAuthenticated) {
-    navigate('/dashboard');
+    navigate("/dashboard");
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       await login({ email, password });
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login error:", error);
     } finally {
       setLoading(false);
     }
@@ -37,7 +34,10 @@ const Login = () => {
       {/* Animated Blobs */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-20 w-96 h-96 bg-white/10 rounded-full blob animate-blob-float"></div>
-        <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-[#4ECDC4]/20 rounded-full blob-2 animate-blob-float" style={{ animationDelay: '7s' }}></div>
+        <div
+          className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-[#4ECDC4]/20 rounded-full blob-2 animate-blob-float"
+          style={{ animationDelay: "7s" }}
+        ></div>
       </div>
 
       <div className="max-w-md w-full relative z-10">
@@ -55,7 +55,10 @@ const Login = () => {
         </div>
 
         {/* Login Card */}
-        <div className="bg-white rounded-[2rem] p-8 shadow-2xl animate-scale-in" style={{ animationDelay: '0.1s' }}>
+        <div
+          className="bg-white rounded-[2rem] p-8 shadow-2xl animate-scale-in"
+          style={{ animationDelay: "0.1s" }}
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Input */}
             <div>
@@ -121,7 +124,7 @@ const Login = () => {
               className="w-full bg-gradient-to-r from-[#FF6B6B] to-[#FFB88C] text-white py-4 rounded-2xl font-black text-lg shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                'Signing in...'
+                "Signing in..."
               ) : (
                 <>
                   Sign In
@@ -141,7 +144,7 @@ const Login = () => {
           {/* Sign Up Link */}
           <div className="text-center">
             <p className="text-[#2C3E50] font-medium">
-              Don't have an account?{' '}
+              Don't have an account?{" "}
               <Link
                 to="/register"
                 className="text-[#FF6B6B] hover:text-[#FFB88C] font-black transition-colors"
@@ -153,7 +156,10 @@ const Login = () => {
         </div>
 
         {/* Back to Home */}
-        <div className="mt-8 text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div
+          className="mt-8 text-center animate-fade-in"
+          style={{ animationDelay: "0.2s" }}
+        >
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-white font-bold hover:gap-3 transition-all"

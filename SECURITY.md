@@ -157,16 +157,19 @@ When reviewing PRs, check for:
 ## 🔄 Security Update Policy
 
 ### Critical Vulnerabilities
+
 - Patch released within 24-48 hours
 - Emergency notification to all users
 - Immediate deployment to production
 
 ### High Severity
+
 - Patch released within 7 days
 - Notification in release notes
 - Scheduled deployment
 
 ### Medium/Low Severity
+
 - Patch released in next regular update
 - Mentioned in release notes
 - Normal deployment schedule

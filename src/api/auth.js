@@ -1,11 +1,14 @@
-import apiClient from './axios';
+import apiClient from "./axios";
 
-const AUTH_BASE = '/api/v1/auth';
+const AUTH_BASE = "/api/v1/auth";
 
 export const authAPI = {
   // Register a new user
   register: async (userData) => {
-    const response = await apiClient.post(`${'/api/v1/users'}/Registeration`, userData);
+    const response = await apiClient.post(
+      `${"/api/v1/users"}/Registeration`,
+      userData,
+    );
     return response.data;
   },
 
@@ -25,7 +28,9 @@ export const authAPI = {
 
   // Refresh access token
   refreshToken: async (refreshToken) => {
-    const response = await apiClient.post(`${AUTH_BASE}/refresh`, { refresh_token: refreshToken });
+    const response = await apiClient.post(`${AUTH_BASE}/refresh`, {
+      refresh_token: refreshToken,
+    });
     return response.data;
   },
 
@@ -37,7 +42,9 @@ export const authAPI = {
 
   // Forgot password
   forgotPassword: async (email) => {
-    const response = await apiClient.post(`${AUTH_BASE}/forgot-password`, { email });
+    const response = await apiClient.post(`${AUTH_BASE}/forgot-password`, {
+      email,
+    });
     return response.data;
   },
 };

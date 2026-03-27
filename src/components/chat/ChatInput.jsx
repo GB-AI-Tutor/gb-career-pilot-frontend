@@ -1,21 +1,21 @@
-import { useState, useRef, useEffect } from 'react';
-import { Send } from 'lucide-react';
-import Button from '../../components/common/Button';
+import { useState, useRef, useEffect } from "react";
+import { Send } from "lucide-react";
+import Button from "../../components/common/Button";
 
 const ChatInput = ({ onSendMessage, disabled = false }) => {
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const textareaRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message.trim() && !disabled) {
       onSendMessage(message);
-      setMessage('');
+      setMessage("");
     }
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSubmit(e);
     }
@@ -24,13 +24,17 @@ const ChatInput = ({ onSendMessage, disabled = false }) => {
   // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px';
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + "px";
     }
   }, [message]);
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-gray-200 dark:border-gray-700 p-4">
+    <form
+      onSubmit={handleSubmit}
+      className="border-t border-gray-200 dark:border-gray-700 p-4"
+    >
       <div className="flex gap-2">
         <textarea
           ref={textareaRef}

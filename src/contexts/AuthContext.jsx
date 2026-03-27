@@ -1,8 +1,8 @@
-import { createContext, useState, useEffect } from 'react';
-import { authAPI } from '../api/auth';
-import { usersAPI } from '../api/users';
-import { tokenStorage } from '../utils/tokenStorage';
-import toast from 'react-hot-toast';
+import { createContext, useState, useEffect } from "react";
+import { authAPI } from "../api/auth";
+import { usersAPI } from "../api/users";
+import { tokenStorage } from "../utils/tokenStorage";
+import toast from "react-hot-toast";
 
 const AuthContext = createContext(null);
 
@@ -20,17 +20,17 @@ export const AuthProvider = ({ children }) => {
       if (token && savedUser) {
         setUser(savedUser);
         setIsAuthenticated(true);
-        
+
         // Optionally fetch fresh user data
         try {
           const freshUser = await usersAPI.getCurrentUser();
           setUser(freshUser);
           tokenStorage.setUser(freshUser);
         } catch (error) {
-          console.error('Failed to fetch user data:', error);
+          console.error("Failed to fetch user data:", error);
         }
       }
-      
+
       setLoading(false);
     };
 
@@ -41,10 +41,12 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       const response = await authAPI.register(userData);
-      toast.success('Registration successful! Please check your email to verify your account.');
+      toast.success(
+        "Registration successful! Please check your email to verify your account.",
+      );
       return response;
     } catch (error) {
-      const message = error.response?.data?.detail || 'Registration failed';
+      const message = error.response?.data?.detail || "Registration failed";
       toast.error(message);
       throw error;
     }
@@ -65,10 +67,10 @@ export const AuthProvider = ({ children }) => {
       tokenStorage.setUser(userData);
       setIsAuthenticated(true);
 
-      toast.success('Login successful!');
+      toast.success("Login successful!");
       return userData;
     } catch (error) {
-      const message = error.response?.data?.detail || 'Login failed';
+      const message = error.response?.data?.detail || "Login failed";
       toast.error(message);
       throw error;
     }
@@ -79,13 +81,13 @@ export const AuthProvider = ({ children }) => {
     try {
       await authAPI.logout();
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     } finally {
       // Clear local state regardless of API call success
       tokenStorage.clearTokens();
       setUser(null);
       setIsAuthenticated(false);
-      toast.success('Logged out successfully');
+      toast.success("Logged out successfully");
     }
   };
 
@@ -94,16 +96,16 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await usersAPI.updateUser(userData);
       const updatedProfile = response?.data ?? response;
-      
+
       // Update local user data
       const updatedUser = { ...user, ...updatedProfile };
       setUser(updatedUser);
       tokenStorage.setUser(updatedUser);
-      
-      toast.success('Profile updated successfully!');
+
+      toast.success("Profile updated successfully!");
       return updatedUser;
     } catch (error) {
-      const message = error.response?.data?.detail || 'Profile update failed';
+      const message = error.response?.data?.detail || "Profile update failed";
       toast.error(message);
       throw error;
     }

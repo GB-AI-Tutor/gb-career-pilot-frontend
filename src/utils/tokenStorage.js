@@ -1,9 +1,9 @@
 // Token storage utilities
 
 const TOKEN_KEYS = {
-  ACCESS_TOKEN: 'access_token',
-  REFRESH_TOKEN: 'refresh_token',
-  USER: 'user',
+  ACCESS_TOKEN: "access_token",
+  REFRESH_TOKEN: "refresh_token",
+  USER: "user",
 };
 
 export const tokenStorage = {

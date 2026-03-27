@@ -1,17 +1,17 @@
-import apiClient from './axios';
+import apiClient from "./axios";
 
-const GROQ_BASE = '/api/v1/groq';
+const GROQ_BASE = "/api/v1/groq";
 
 export const chatAPI = {
   // Send chat message (streaming)
   sendMessage: async (messages, conversationId = null) => {
     const payload = {
-      messages: messages.map(msg => ({
+      messages: messages.map((msg) => ({
         role: msg.role,
         content: msg.content,
       })),
     };
-    
+
     if (conversationId) {
       payload.conversation_id = conversationId;
     }
@@ -19,8 +19,8 @@ export const chatAPI = {
     // For streaming responses, we need to handle this differently
     // This returns the response object, not the data
     return apiClient.post(`${GROQ_BASE}/chat`, payload, {
-      responseType: 'stream',
-      adapter: 'fetch', // Use fetch adapter for SSE
+      responseType: "stream",
+      adapter: "fetch", // Use fetch adapter for SSE
     });
   },
 

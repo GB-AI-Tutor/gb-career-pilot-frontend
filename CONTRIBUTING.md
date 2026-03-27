@@ -26,6 +26,7 @@ We're a student-led open source project under **Feel and Support** organization,
 ### Development Setup
 
 1. **Fork the repository**
+
    ```bash
    # Click "Fork" on GitHub, then clone your fork:
    git clone https://github.com/YOUR_USERNAME/gb-career-pilot.git
@@ -33,6 +34,7 @@ We're a student-led open source project under **Feel and Support** organization,
    ```
 
 2. **Backend Setup**
+
    ```bash
    cd gb-career-pilot-backend
    python3 -m venv venv
@@ -44,6 +46,7 @@ We're a student-led open source project under **Feel and Support** organization,
    ```
 
 3. **Frontend Setup**
+
    ```bash
    cd gb-career-pilot-frontend
    npm install
@@ -78,6 +81,7 @@ git checkout -b bugfix/issue-description
 ```
 
 **Branch naming conventions:**
+
 - `feature/` - New features
 - `bugfix/` - Bug fixes
 - `docs/` - Documentation updates
@@ -103,6 +107,7 @@ git commit -m "docs(readme): add Docker setup instructions"
 ```
 
 **Commit types:**
+
 - `feat` - New feature
 - `fix` - Bug fix
 - `docs` - Documentation
@@ -121,17 +126,21 @@ git push origin feature/your-feature-name
 ```
 
 **Pull Request Template:**
+
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Documentation update
 - [ ] Refactoring
 
 ## Testing
+
 - [ ] Tested locally
 - [ ] Added/updated tests
 - [ ] All tests pass
@@ -139,6 +148,7 @@ Brief description of changes
 ## Screenshots (if applicable)
 
 ## Checklist
+
 - [ ] Code follows project style
 - [ ] Self-reviewed code
 - [ ] Commented complex code
@@ -149,6 +159,7 @@ Brief description of changes
 ## 🎯 Contribution Areas
 
 ### 1. **Frontend Development** (React, Tailwind)
+
 - UI/UX improvements
 - New pages/components
 - Responsive design fixes
@@ -158,6 +169,7 @@ Brief description of changes
 **Skills needed:** JavaScript, React, CSS, HTML
 
 ### 2. **Backend Development** (Python, FastAPI)
+
 - API endpoints
 - Database optimizations
 - AI prompt engineering
@@ -167,6 +179,7 @@ Brief description of changes
 **Skills needed:** Python, FastAPI, SQL, REST APIs
 
 ### 3. **AI/ML Enhancement**
+
 - Improve AI prompts
 - Add RAG (Retrieval Augmented Generation)
 - Fine-tune responses
@@ -176,6 +189,7 @@ Brief description of changes
 **Skills needed:** Python, LangChain, Prompt Engineering
 
 ### 4. **Database & Data**
+
 - Add more universities
 - Enrich program data
 - Database optimizations
@@ -185,6 +199,7 @@ Brief description of changes
 **Skills needed:** SQL, PostgreSQL, Data Entry
 
 ### 5. **DevOps & Infrastructure**
+
 - CI/CD improvements
 - Docker optimizations
 - Monitoring setup
@@ -194,6 +209,7 @@ Brief description of changes
 **Skills needed:** Docker, CI/CD, Linux, Cloud Platforms
 
 ### 6. **Documentation**
+
 - Improve README
 - Write tutorials
 - Create video guides
@@ -203,6 +219,7 @@ Brief description of changes
 **Skills needed:** Technical Writing, Markdown
 
 ### 7. **Testing**
+
 - Unit tests
 - Integration tests
 - End-to-end tests
@@ -212,6 +229,7 @@ Brief description of changes
 **Skills needed:** pytest, Vitest, Testing Best Practices
 
 ### 8. **Design**
+
 - UI mockups
 - Brand assets
 - Icons and illustrations
@@ -236,6 +254,7 @@ We value every contribution! Contributors will be:
 ### Our Pledge
 
 We pledge to make participation in our project a harassment-free experience for everyone, regardless of:
+
 - Age, body size, disability
 - Ethnicity, gender identity and expression
 - Level of experience, education
@@ -245,6 +264,7 @@ We pledge to make participation in our project a harassment-free experience for 
 ### Our Standards
 
 **Positive behavior:**
+
 - ✅ Using welcoming and inclusive language
 - ✅ Being respectful of differing viewpoints
 - ✅ Gracefully accepting constructive criticism
@@ -252,6 +272,7 @@ We pledge to make participation in our project a harassment-free experience for 
 - ✅ Showing empathy towards others
 
 **Unacceptable behavior:**
+
 - ❌ Trolling, insulting/derogatory comments
 - ❌ Personal or political attacks
 - ❌ Public or private harassment
@@ -267,15 +288,18 @@ Violations can be reported to [conduct@feelandsupport.org]. All complaints will 
 ### For Beginners
 
 **Git & GitHub:**
+
 - [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 - [GitHub Flow](https://guides.github.com/introduction/flow/)
 - [First Contributions](https://github.com/firstcontributions/first-contributions)
 
 **Python/FastAPI:**
+
 - [FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/)
 - [Python for Beginners](https://www.python.org/about/gettingstarted/)
 
 **React:**
+
 - [React Official Tutorial](https://react.dev/learn)
 - [Vite Guide](https://vitejs.dev/guide/)
 
@@ -305,6 +329,7 @@ Violations can be reported to [conduct@feelandsupport.org]. All complaints will 
 ### Review Criteria
 
 Reviewers will check:
+
 - ✅ Code quality and style
 - ✅ Test coverage
 - ✅ Documentation updates
@@ -317,6 +342,7 @@ Reviewers will check:
 See our [ROADMAP.md](./ROADMAP.md) for planned features.
 
 Want to suggest a feature?
+
 1. Check existing issues
 2. Create a new issue with `feature` label
 3. Discuss in Discord `#ideas`
@@ -326,11 +352,13 @@ Want to suggest a feature?
 ## 🐛 Bug Reports
 
 **Before reporting:**
+
 - Search existing issues
 - Try latest version
 - Check documentation
 
 **Good bug report includes:**
+
 - Clear title
 - Steps to reproduce
 - Expected behavior
@@ -349,6 +377,7 @@ Want to suggest a feature?
 ## 🌍 Internationalization
 
 We welcome translations!
+
 - Urdu translation highly appreciated
 - Arabic, Bengali, Hindi also welcome
 - See `i18n` folder for translation files
@@ -356,6 +385,7 @@ We welcome translations!
 ## 📝 License
 
 By contributing, you agree that your contributions will be licensed under the project's dual-license:
+
 - **Free** for non-profit use
 - **Commercial license required** for commercial use
 
@@ -373,4 +403,4 @@ Every contribution, no matter how small, makes a difference. Together, we're emp
 
 **Feel and Support** - Empowering Students Through Technology
 
-*For more information, visit our website or join our Discord community!*
+_For more information, visit our website or join our Discord community!_

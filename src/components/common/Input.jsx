@@ -1,9 +1,4 @@
-const Input = ({ 
-  label, 
-  error, 
-  className = '', 
-  ...props 
-}) => {
+const Input = ({ label, error, className = "", ...props }) => {
   return (
     <div className="w-full">
       {label && (
@@ -12,7 +7,7 @@ const Input = ({
         </label>
       )}
       <input
-        className={`input-field ${error ? 'border-red-500 focus:ring-red-500' : ''} ${className}`}
+        className={`input-field ${error ? "border-red-500 focus:ring-red-500" : ""} ${className}`}
         {...props}
       />
       {error && (

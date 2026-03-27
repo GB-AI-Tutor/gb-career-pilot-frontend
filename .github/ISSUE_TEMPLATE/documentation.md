@@ -1,9 +1,9 @@
 ---
 name: Documentation Improvement
 about: Suggest improvements to documentation
-title: '[DOCS] '
+title: "[DOCS] "
 labels: documentation
-assignees: ''
+assignees: ""
 ---
 
 ## 📚 Documentation Issue
@@ -11,13 +11,14 @@ assignees: ''
 <!-- What documentation needs improvement? -->
 
 **Affected Documentation:**
+
 - [ ] README.md
 - [ ] CONTRIBUTING.md
 - [ ] API Documentation
 - [ ] Code comments
 - [ ] Setup guides
 - [ ] Tutorials
-- [ ] Other: _______________
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ## ❓ What's Missing or Unclear?
 
@@ -38,11 +39,12 @@ Your proposed documentation content here
 ## 🎯 Target Audience
 
 Who would benefit from this improvement?
+
 - [ ] New contributors
 - [ ] Experienced developers
 - [ ] End users
 - [ ] Project maintainers
-- [ ] Other: _______________
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ## 📸 Screenshots/Examples (Optional)
 

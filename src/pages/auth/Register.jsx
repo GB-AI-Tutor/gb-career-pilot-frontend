@@ -1,17 +1,29 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
-import { UserPlus, Sparkles, ArrowRight, Mail, Lock, User, Phone, MapPin, GraduationCap, BookOpen, Check } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import {
+  UserPlus,
+  Sparkles,
+  ArrowRight,
+  Mail,
+  Lock,
+  User,
+  Phone,
+  MapPin,
+  GraduationCap,
+  BookOpen,
+  Check,
+} from "lucide-react";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password_hash: '',
-    full_name: '',
-    phone: '',
-    city: '',
-    field_of_interest: 'Computer Science',
-    fsc_percentage: '',
+    email: "",
+    password_hash: "",
+    full_name: "",
+    phone: "",
+    city: "",
+    field_of_interest: "Computer Science",
+    fsc_percentage: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -20,22 +32,22 @@ const Register = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       await registerUser({
         ...formData,
         fsc_percentage: parseFloat(formData.fsc_percentage),
       });
       setSuccess(true);
-      setTimeout(() => navigate('/login'), 3000);
+      setTimeout(() => navigate("/login"), 3000);
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error("Registration error:", error);
     } finally {
       setLoading(false);
     }
@@ -61,7 +73,9 @@ const Register = () => {
           </p>
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FFE66D]/20 rounded-full">
             <div className="w-2 h-2 bg-[#FFE66D] rounded-full animate-pulse"></div>
-            <span className="text-sm font-bold text-[#2C3E50]">Redirecting to login...</span>
+            <span className="text-sm font-bold text-[#2C3E50]">
+              Redirecting to login...
+            </span>
           </div>
         </div>
       </div>
@@ -73,7 +87,10 @@ const Register = () => {
       {/* Animated Blobs */}
       <div className="absolute inset-0">
         <div className="absolute top-10 right-20 w-96 h-96 bg-white/10 rounded-full blob animate-blob-float"></div>
-        <div className="absolute bottom-20 left-20 w-[500px] h-[500px] bg-[#FF6B6B]/20 rounded-full blob-2 animate-blob-float" style={{ animationDelay: '7s' }}></div>
+        <div
+          className="absolute bottom-20 left-20 w-[500px] h-[500px] bg-[#FF6B6B]/20 rounded-full blob-2 animate-blob-float"
+          style={{ animationDelay: "7s" }}
+        ></div>
       </div>
 
       <div className="max-w-3xl w-full relative z-10">
@@ -91,7 +108,10 @@ const Register = () => {
         </div>
 
         {/* Registration Card */}
-        <div className="bg-white rounded-[2rem] p-8 shadow-2xl animate-scale-in" style={{ animationDelay: '0.1s' }}>
+        <div
+          className="bg-white rounded-[2rem] p-8 shadow-2xl animate-scale-in"
+          style={{ animationDelay: "0.1s" }}
+        >
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name & Email */}
             <div className="grid md:grid-cols-2 gap-6">
@@ -244,7 +264,7 @@ const Register = () => {
               className="w-full bg-gradient-to-r from-[#4ECDC4] to-[#44A08D] text-white py-4 rounded-2xl font-black text-lg shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                'Creating Account...'
+                "Creating Account..."
               ) : (
                 <>
                   Create Account
@@ -257,7 +277,7 @@ const Register = () => {
           {/* Sign In Link */}
           <div className="mt-8 text-center">
             <p className="text-[#2C3E50] font-medium">
-              Already have an account?{' '}
+              Already have an account?{" "}
               <Link
                 to="/login"
                 className="text-[#4ECDC4] hover:text-[#44A08D] font-black transition-colors"
@@ -269,7 +289,10 @@ const Register = () => {
         </div>
 
         {/* Back to Home */}
-        <div className="mt-8 text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        <div
+          className="mt-8 text-center animate-fade-in"
+          style={{ animationDelay: "0.2s" }}
+        >
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-white font-bold hover:gap-3 transition-all"
@@ -308,7 +331,7 @@ export default Register;
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     setLoading(true);
-    
+
 //     try {
 //       await registerUser({
 //         ...formData,
@@ -326,7 +349,7 @@ export default Register;
 //   if (success) {
 //     return (
 //       <div className="min-h-screen flex items-center justify-center px-4">
-       
+
 //         <Card className="max-w-md w-full text-center">
 //           <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mx-auto mb-4">
 //             <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -348,7 +371,7 @@ export default Register;
 //   return (
 //     <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-900 dark:to-gray-800">
 //       <div className="bg-gray max-w-md w-full border border-gray-200 dark:border-gray-700 rounded-xl p-6">
-     
+
 //       <div className="max-w-2xl w-full">
 //         <div className="text-center mb-8">
 //           <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600 rounded-full mb-4">
@@ -453,7 +476,7 @@ export default Register;
 //               type="number"
 //               name="fsc_percentage"
 //               className="w-half border border-gray-100 rounded-md focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
-              
+
 //               value={formData.fsc_percentage}
 //               onChange={handleChange}
 //               placeholder="85.50"

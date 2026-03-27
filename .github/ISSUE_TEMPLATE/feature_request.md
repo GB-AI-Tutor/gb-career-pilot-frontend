@@ -1,9 +1,9 @@
 ---
 name: Feature Request
 about: Suggest an idea for this project
-title: '[FEATURE] '
+title: "[FEATURE] "
 labels: enhancement
-assignees: ''
+assignees: ""
 ---
 
 ## 💡 Feature Description
@@ -41,7 +41,7 @@ assignees: ''
 - [ ] Students using AI counselor
 - [ ] Contributors to the project
 - [ ] Project maintainers
-- [ ] Other: _______________
+- [ ] Other: **\*\***\_\_\_**\*\***
 
 ## 📈 Priority Level
 
@@ -57,6 +57,7 @@ How important is this feature to you?
 <!-- If you have technical expertise, suggest implementation approach -->
 
 **Affected Components:**
+
 - [ ] Frontend
 - [ ] Backend
 - [ ] Database
@@ -65,6 +66,7 @@ How important is this feature to you?
 - [ ] Documentation
 
 **Estimated Complexity:**
+
 - [ ] Simple (< 1 day)
 - [ ] Medium (1-3 days)
 - [ ] Complex (> 3 days)

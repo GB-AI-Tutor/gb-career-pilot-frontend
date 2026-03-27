@@ -1,6 +1,6 @@
-import apiClient from './axios';
+import apiClient from "./axios";
 
-const STATS_BASE = '/api/v1/stats';
+const STATS_BASE = "/api/v1/stats";
 
 export const statsAPI = {
   // Get all university and program names
