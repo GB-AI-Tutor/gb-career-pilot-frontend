@@ -1,217 +1,337 @@
-# GB Career Pilot - Frontend
+# 🎓 GB Career Pilot - Frontend
 
-React frontend application for GB Career Pilot, an AI-powered university guidance platform.
+<div align="center">
 
-## 🚀 Features
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5.0+-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-- **AI Career Counselor**: Chat interface with streaming AI responses
-- **University Search**: Browse and search Pakistani universities with advanced filters
-- **Program Search**: Find programs matching your academic profile with eligibility tiers
-- **Eligibility Matching**: Safety, Target, and Reach classifications based on FSC percentage
-- **Favorites System**: Save and manage favorite universities
-- **User Profiles**: Manage academic info and preferences
-- **Dark Mode Support**: Toggle between light and dark themes
+[![License: Dual](https://img.shields.io/badge/License-Dual%20(MIT%2FCommercial)-blue.svg)](./LICENSE.md)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://raqeebs.app)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
-## 📋 Prerequisites
+**Modern React frontend for AI-powered university counseling**
 
-- Node.js 18+ and npm
-- Backend API running at `http://localhost:8000`
+[Live Demo](https://raqeebs.app) · [Backend Repo](https://github.com/GB-AI-Tutor/gb-career-pilot-backend) · [Report Bug](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/issues) · [Request Feature](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/issues)
 
-## 🛠️ Installation
+</div>
 
-1. **Clone and navigate to the project**:
+---
+
+## 🎯 About
+
+GB Career Pilot Frontend is a modern, responsive web application built with React 19 and Vite. It provides an intuitive interface for Pakistani students to explore universities, discover programs, and receive AI-powered career guidance.
+
+**Live App:** https://raqeebs.app  
+**Backend API:** https://github.com/GB-AI-Tutor/gb-career-pilot-backend
+
+---
+
+## ✨ Features
+
+- 🎨 **Modern UI** - Clean, energetic design with TailwindCSS
+- 💬 **AI Chat Interface** - Real-time streaming AI counseling
+- 🎓 **University Explorer** - Browse 200+ institutions
+- 📚 **Program Search** - Discover academic programs
+- 👤 **User Dashboard** - Personalized profile management
+- 📱 **Responsive** - Mobile-first design
+- ⚡ **Fast** - Vite for instant HMR
+- 🔐 **Secure Auth** - JWT-based authentication
+- 🌐 **API Integration** - TanStack Query for data management
+- ♿ **Accessible** - ARIA labels and keyboard navigation
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|----------|-------------|
+| **Framework** | React 19 |
+| **Build Tool** | Vite 5.0+ |
+| **Styling** | TailwindCSS 3.4 |
+| **State Management** | React Context + TanStack Query |
+| **Routing** | React Router v6 |
+| **HTTP Client** | Axios |
+| **Forms** | React Hook Form |
+| **Icons** | Lucide React |
+| **Deployment** | Vercel |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ or Bun
+- npm, yarn, or pnpm
+- Backend API running (see [backend repo](https://github.com/GB-AI-Tutor/gb-career-pilot-backend))
+
+### Installation
+
+1. **Clone repository**
    ```bash
-   cd ~/AI_Tutor_project/gb-career-pilot-frontend
+   git clone https://github.com/GB-AI-Tutor/gb-career-pilot-frontend.git
+   cd gb-career-pilot-frontend
    ```
 
-2. **Install dependencies**:
+2. **Install dependencies**
    ```bash
    npm install
+   # or
+   yarn install
+   # or
+   pnpm install
    ```
 
-3. **Configure environment variables**:
+3. **Configure environment**
    ```bash
    cp .env.example .env
-   # Edit .env and set your API URL
+   # Edit .env with your backend API URL
    ```
 
-4. **Start development server**:
+4. **Start development server**
    ```bash
    npm run dev
+   # or
+   yarn dev
    ```
 
-5. **Open your browser**:
-   Navigate to `http://localhost:5173`
+5. **Open browser**
+   - Local: http://localhost:5173
+   - Network: Check terminal for network URL
+
+### Environment Variables
+
+Create `.env` file:
+
+```env
+# Backend API URL
+VITE_API_BASE_URL=http://localhost:8000
+
+# For production:
+# VITE_API_BASE_URL=https://gb-career-pilot-api.onrender.com
+```
+
+---
 
 ## 📁 Project Structure
 
 ```
-src/
-├── api/              # API integration (axios, auth, users, universities, chat, stats)
-├── components/       # React components
-│   ├── auth/         # Authentication components
-│   ├── chat/         # Chat interface components
-│   ├── universities/ # University-related components
-│   ├── common/       # Reusable UI components (Button, Input, Card, etc.)
-│   └── layout/       # Layout components (Navbar, Sidebar, Footer)
-├── contexts/         # React Context (Auth, Theme)
-├── hooks/            # Custom React hooks
-├── pages/            # Page components (Home, Dashboard, Chat, etc.)
-├── utils/            # Utility functions (tokenStorage, formatters, constants)
-├── App.jsx           # Main app component with routing
-└── main.jsx          # Entry point
+gb-career-pilot-frontend/
+├── src/
+│   ├── api/
+│   │   └── axios.js           # Axios configuration
+│   ├── components/
+│   │   ├── auth/              # Auth components
+│   │   ├── chat/              # AI chat interface
+│   │   ├── dashboard/         # Dashboard components
+│   │   ├── common/            # Reusable components
+│   │   └── ...
+│   ├── contexts/
+│   │   └── AuthContext.jsx    # Authentication context
+│   ├── hooks/
+│   │   └── useAuth.js         # Auth hooks
+│   ├── pages/
+│   │   ├── Home.jsx           # Landing page
+│   │   ├── Login.jsx          # Login page
+│   │   ├── Dashboard.jsx      # User dashboard
+│   │   ├── Universities.jsx   # University listing
+│   │   ├── Programs.jsx       # Program listing
+│   │   ├── AIChat.jsx         # AI counseling
+│   │   └── ...
+│   ├── services/              # API service layer
+│   ├── utils/                 # Utility functions
+│   ├── App.jsx                # Main app component
+│   ├── main.jsx               # Entry point
+│   └── index.css              # Global styles
+├── public/                    # Static assets
+├── .github/workflows/         # CI/CD
+├── package.json               # Dependencies
+├── vite.config.js             # Vite configuration
+├── tailwind.config.js         # Tailwind configuration
+└── vercel.json                # Vercel deployment config
 ```
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## 🔐 Authentication Flow
-
-1. User registers → verification email sent
-2. User clicks email link → account activated
-3. User logs in → receives access_token (3 hours) + refresh_token (30 days)
-4. Tokens stored in localStorage
-5. axios interceptor auto-attaches token to requests
-6. On 401 error, automatically refreshes token
-7. On logout, tokens cleared and user redirected to login
-
-## 🎨 UI Components
-
-All components are styled with Tailwind CSS and support dark mode:
-
-- **Button**: 4 variants (primary, secondary, danger, outline), 3 sizes
-- **Input**: With label, error states, and validation
-- **Card**: Reusable container component
-- **Loader**: Loading spinner (3 sizes)
-- **ProtectedRoute**: Auth check with redirect
-
-## 📡 API Integration
-
-Complete API layer for backend endpoints:
-
-### Auth
-- `POST /api/v1/auth/Registeration` - Register user
-- `POST /api/v1/auth/verify` - Verify email
-- `POST /api/v1/auth/login` - Login
-- `POST /api/v1/auth/refresh` - Refresh token
-- `POST /api/v1/auth/logout` - Logout
-- `POST /api/v1/auth/forgot-password` - Reset password
-
-### Users
-- `GET /api/v1/users/me` - Get current user
-- `PUT /api/v1/users/update_user_info` - Update profile
-
-### Universities
-- `GET /api/v1/universities/get_university` - List universities
-- `GET /api/v1/universities/get_university_by_name` - Get by name
-- `GET /api/v1/universities/programs/search` - Search programs
-- `POST /api/v1/universities/favorites/{id}` - Add favorite
-- `DELETE /api/v1/universities/favorites/{id}` - Remove favorite
-- `GET /api/v1/universities/favorites` - Get favorites
-
-### Chat
-- `POST /api/v1/groq/chat` - Send chat message (SSE streaming)
-
-### Stats
-- `GET /api/v1/stats/stats` - Get all universities and programs
-
-## 🎯 Eligibility Tiers
-
-Programs are classified based on student's FSC percentage:
-
-- **Safety** 🟢: Student's % is 10+ points above cutoff
-- **Target** 🟡: Student's % is within ±10 points of cutoff
-- **Reach** 🟠: Student's % is below cutoff but above minimum
-- **Not Eligible** 🔴: Below minimum FSC requirement
-
-## 🌐 Environment Variables
-
-Create a `.env` file:
-
-```env
-VITE_API_BASE_URL=http://localhost:8000
-VITE_FRONTEND_URL=http://localhost:5173
-```
-
-## 🚢 Deployment
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-### Deploy to Vercel
-
-```bash
-npm i -g vercel
-vercel
-```
-
-Set environment variables in Vercel dashboard:
-- `VITE_API_BASE_URL`: Your backend API URL
-- `VITE_FRONTEND_URL`: Your Vercel app URL
-
-Don't forget to update CORS settings in your backend to include your Vercel URL!
-
-## 📦 Dependencies
-
-### Core
-- **react** 18.3 - UI library
-- **react-dom** 18.3 - React DOM renderer
-- **react-router-dom** - Client-side routing
-- **vite** - Build tool
-
-### State Management & Data Fetching
-- **@tanstack/react-query** - Server state management
-- **axios** - HTTP client
-
-### Forms & Validation
-- **react-hook-form** - Form state management
-- **zod** - Schema validation
-- **@hookform/resolvers** - Form validation resolvers
-
-### UI & Styling
-- **tailwindcss** - Utility-first CSS
-- **@headlessui/react** - Unstyled accessible components
-- **lucide-react** - Icon library
-- **react-hot-toast** - Toast notifications
-
-## 🛣️ Routing
-
-- `/` - Home/Landing page
-- `/login` - Login page
-- `/register` - Registration page
-- `/verify` - Email verification page
-- `/dashboard` - User dashboard (protected)
-- `/chat` - AI chat interface (protected)
-- `/universities` - Browse universities (protected)
-- `/programs` - Search programs (protected)
-- `/profile` - User profile (protected)
-
-## �� Contributing
-
-1. Create a feature branch
-2. Make your changes
-3. Test thoroughly
-4. Submit a pull request
-
-## 📄 License
-
-This project is part of the GB Career Pilot platform.
-
-## 🐛 Known Issues & TODOs
-
-See `IMPLEMENTATION_STATUS.md` for detailed implementation progress and remaining tasks.
-
-## 📞 Support
-
-For issues or questions, please contact the development team.
 
 ---
 
-**Built with** ❤️ **using React, Vite, and Tailwind CSS**
+## 🎨 Key Pages
+
+### 🏠 Home Page
+- Hero section with CTA
+- Features overview
+- University highlights
+- How it works section
+
+### 💬 AI Chat
+- Real-time streaming responses
+- Conversation history
+- Context-aware recommendations
+- Message formatting with markdown
+
+### 🎓 Universities
+- Grid/list view toggle
+- Search and filters
+- University cards with details
+- Pagination
+
+### 📚 Programs
+- Program search
+- Filter by field/degree
+- Program details modal
+- Related universities
+
+### 👤 Dashboard
+- User profile
+- Conversation history
+- Saved universities
+- Settings
+
+---
+
+## 🧪 Development
+
+### Available Scripts
+
+```bash
+# Development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Lint code
+npm run lint
+
+# Format code
+npm run format
+```
+
+### Code Style
+
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
+- **Conventional Commits** - Commit message format
+
+---
+
+## 🚢 Deployment
+
+### Vercel (Production)
+
+Automatic deployment from `main` branch.
+
+**Live URL:** https://raqeebs.app
+
+1. Push to `main`
+2. Vercel auto-detects changes
+3. Builds and deploys
+
+### Manual Deployment
+
+```bash
+# Build
+npm run build
+
+# Deploy dist/ folder to any static host
+```
+
+### Environment Variables on Vercel
+
+Set in Vercel dashboard:
+- `VITE_API_BASE_URL` - Backend API URL
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from frontend developers and designers!
+
+### How to Contribute
+
+1. Fork repository
+2. Create branch: `git checkout -b feature/ui-improvement`
+3. Make changes
+4. Test locally: `npm run dev`
+5. Commit: `git commit -m 'feat: improve dashboard UI'`
+6. Push: `git push origin feature/ui-improvement`
+7. Open Pull Request
+
+### Contribution Areas
+
+- 🎨 **UI/UX** - Improve design and user experience
+- 📱 **Responsive Design** - Mobile optimization
+- ♿ **Accessibility** - ARIA labels, keyboard navigation
+- ✨ **Features** - New pages or components
+- 🐛 **Bug Fixes** - Fix issues
+- 📚 **Documentation** - Improve docs
+- 🧪 **Testing** - Add tests
+
+### Good First Issues
+
+Look for [`good first issue`](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/labels/good%20first%20issue) label!
+
+**Read [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.**
+
+---
+
+## 📜 License
+
+**Dual-license model:**
+- ✅ Free for non-profit (students, NGOs, education)
+- 💼 Commercial license required for businesses
+
+See [LICENSE.md](./LICENSE.md)
+
+---
+
+## 🔒 Security
+
+Found a security issue?
+
+📧 Email: security@feelandsupport.org  
+**Do NOT open public issues for security vulnerabilities!**
+
+See [SECURITY.md](./SECURITY.md)
+
+---
+
+## 📞 Contact & Community
+
+- 🌐 **Live App:** [raqeebs.app](https://raqeebs.app)
+- 💬 **Discord:** *Coming soon*
+- 📧 **Email:** contact@feelandsupport.org
+- 🐛 **Issues:** [GitHub Issues](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/issues)
+- 💡 **Discussions:** [GitHub Discussions](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/discussions)
+
+---
+
+## 🙏 Acknowledgments
+
+- **React Team** - For React 19
+- **Vite Team** - For blazing-fast builds
+- **Tailwind Labs** - For TailwindCSS
+- **Vercel** - For free hosting
+- **Feel and Support** - Our parent organization
+
+---
+
+## 📊 Project Status
+
+- ✅ **Production Ready** - Live at raqeebs.app
+- ✅ **Actively Maintained** - Regular updates
+- ✅ **Open Source** - Community contributions welcome
+- 🚀 **Growing** - Expanding features
+
+---
+
+<div align="center">
+
+**Built with ❤️ by Feel and Support**
+
+[⭐ Star](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend) · [🍴 Fork](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/fork) · [🐛 Report](https://github.com/GB-AI-Tutor/gb-career-pilot-frontend/issues)
+
+</div>

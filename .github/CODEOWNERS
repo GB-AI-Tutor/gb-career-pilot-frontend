@@ -1,0 +1,138 @@
+# CODEOWNERS - Frontend Repository
+# 
+# This file defines who must review PRs for specific files/directories.
+# Code owners are automatically requested for review when a PR touches their files.
+# More info: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# ==============================================================================
+# GLOBAL OWNER (All files)
+# ==============================================================================
+# You (organization owner) must review everything by default
+* @RaeesRaqeeb
+
+# ==============================================================================
+# CRITICAL PATHS (Require Owner Review)
+# ==============================================================================
+
+# API Integration & Backend Communication (CRITICAL)
+/src/api/ @RaeesRaqeeb
+/src/services/ @RaeesRaqeeb
+/src/api/axios.js @RaeesRaqeeb
+
+# Authentication & User Context (SECURITY CRITICAL)
+/src/contexts/AuthContext.jsx @RaeesRaqeeb
+/src/hooks/useAuth.js @RaeesRaqeeb
+
+# Configuration & Environment (SECURITY CRITICAL)
+/src/config/ @RaeesRaqeeb
+.env.example @RaeesRaqeeb
+vite.config.js @RaeesRaqeeb
+vercel.json @RaeesRaqeeb
+
+# Main App & Routing (Breaking Changes)
+/src/App.jsx @RaeesRaqeeb
+/src/main.jsx @RaeesRaqeeb
+
+# ==============================================================================
+# CI/CD & Infrastructure (Owner Only)
+# ==============================================================================
+/.github/workflows/ @RaeesRaqeeb
+/.github/CODEOWNERS @RaeesRaqeeb
+
+# ==============================================================================
+# SHARED REVIEW (Owner + Frontend Maintainers)
+# ==============================================================================
+# Once you have trusted maintainers, uncomment and add their usernames:
+
+# UI Components (Can be reviewed by frontend maintainers)
+# /src/components/ @RaeesRaqeeb @TrustedFrontendMaintainer1
+
+# Pages (Can be reviewed by frontend maintainers)
+# /src/pages/ @RaeesRaqeeb @TrustedFrontendMaintainer1
+
+# Styling & Design System
+# /src/styles/ @RaeesRaqeeb @UIDesignMaintainer
+# /src/index.css @RaeesRaqeeb @UIDesignMaintainer
+
+# ==============================================================================
+# COMPONENTS BY FEATURE (Add maintainers as team grows)
+# ==============================================================================
+
+# Chat Interface (AI Integration)
+/src/components/chat/ @RaeesRaqeeb
+# Add AI feature maintainer later:
+# /src/components/chat/ @RaeesRaqeeb @AIMaintainer
+
+# Dashboard Components
+/src/components/dashboard/ @RaeesRaqeeb
+
+# University & Program Components
+/src/components/universities/ @RaeesRaqeeb
+/src/components/programs/ @RaeesRaqeeb
+
+# Authentication Components
+/src/components/auth/ @RaeesRaqeeb
+
+# Common/Shared Components (Can be reviewed by community)
+/src/components/common/ @RaeesRaqeeb
+# Add UI maintainers later:
+# /src/components/common/ @RaeesRaqeeb @UIMaintainer1
+
+# ==============================================================================
+# PAGES (Frontend Routes)
+# ==============================================================================
+/src/pages/ @RaeesRaqeeb
+# Add page owners as features grow:
+# /src/pages/Dashboard.jsx @RaeesRaqeeb @DashboardMaintainer
+# /src/pages/Universities.jsx @RaeesRaqeeb @UniversityFeatureMaintainer
+
+# ==============================================================================
+# TESTING (Can be reviewed by any maintainer)
+# ==============================================================================
+/tests/ @RaeesRaqeeb
+/__tests__/ @RaeesRaqeeb
+/**/*.test.js @RaeesRaqeeb
+/**/*.test.jsx @RaeesRaqeeb
+# Add test maintainers:
+# /tests/ @RaeesRaqeeb @TestMaintainer1
+
+# ==============================================================================
+# DOCUMENTATION (Community Can Help Review)
+# ==============================================================================
+*.md @RaeesRaqeeb
+/docs/ @RaeesRaqeeb
+# Add doc maintainers later:
+# *.md @RaeesRaqeeb @DocMaintainer1
+
+# ==============================================================================
+# DEPENDENCIES (Careful Review Needed)
+# ==============================================================================
+package.json @RaeesRaqeeb
+package-lock.json @RaeesRaqeeb
+yarn.lock @RaeesRaqeeb
+
+# ==============================================================================
+# ASSETS & PUBLIC FILES
+# ==============================================================================
+/public/ @RaeesRaqeeb
+/src/assets/ @RaeesRaqeeb
+# Images, icons, fonts can be reviewed by UI team:
+# /src/assets/images/ @RaeesRaqeeb @UITeam
+
+# ==============================================================================
+# UTILITY & HELPER FUNCTIONS
+# ==============================================================================
+/src/utils/ @RaeesRaqeeb
+/src/hooks/ @RaeesRaqeeb
+
+# ==============================================================================
+# NOTES FOR CONTRIBUTORS
+# ==============================================================================
+# 
+# - All PRs need at least 2 approvals (set in branch protection)
+# - Code owners are AUTOMATICALLY requested for review
+# - Owner (@RaeesRaqeeb) has final approval on all changes
+# - API integration changes MUST be reviewed by owner
+# - UI/component changes can be reviewed by frontend maintainers (once added)
+#
+# Questions? Ask in Discord #frontend-general or open a discussion!
