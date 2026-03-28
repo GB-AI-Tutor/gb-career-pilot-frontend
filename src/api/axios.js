@@ -9,6 +9,8 @@ const apiClient = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  // Important: allow credentials for CORS requests
+  withCredentials: true,
 });
 
 // Request interceptor to add auth token
