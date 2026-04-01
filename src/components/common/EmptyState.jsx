@@ -7,7 +7,7 @@ const EmptyState = ({
   className = "",
 }) => {
   return (
-    <div className={`empty-state ${className}`} style={styles.container}>
+    <div className={className} style={styles.container}>
       <div style={styles.icon}>{icon}</div>
       <h3 style={styles.title}>{title}</h3>
       <p style={styles.message}>{message}</p>
