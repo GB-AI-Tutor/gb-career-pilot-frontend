@@ -12,7 +12,7 @@ const EmptyState = ({
       <h3 style={styles.title}>{title}</h3>
       <p style={styles.message}>{message}</p>
       {actionLabel && onAction && (
-        <button onClick={onAction} style={styles.button}>
+        <button type="button" onClick={onAction} style={styles.button}>
           {actionLabel}
         </button>
       )}
