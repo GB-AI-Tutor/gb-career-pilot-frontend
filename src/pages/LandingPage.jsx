@@ -169,6 +169,7 @@ const LandingPage = () => {
     "university_names",
   ]);
 
+  // 1. Keep the programs count logic (it's working via the public stats)
   const programsCount = extractCount(statsPayload, [
     "Programs",
     "total_programs",
@@ -177,27 +178,19 @@ const LandingPage = () => {
     "program_names",
   ]);
 
-  const testsCount =
-    extractCount(testsResponse, ["total_tests", "tests_count", "tests"]) ||
-    extractCount(statsPayload, [
-      "total_tests",
-      "tests_count",
-      "practice_tests_count",
-      "tests",
-    ]);
-
+  // 2. Define the fallback calculation for questions first
   const testQuestionsFromTests = tests.reduce(
     (sum, test) => sum + Number(test?.total_questions || 0),
     0,
   );
+
+  // 3. Prioritize public statsPayload to avoid the 403 Forbidden error for guests
+  const testsCount =
+    extractCount(statsPayload, ["total_tests", "tests_count"]) || tests.length;
+
   const testQuestionsCount =
-    testQuestionsFromTests ||
-    extractCount(statsPayload, [
-      "total_test_questions",
-      "test_questions_count",
-      "questions_count",
-      "total_questions",
-    ]);
+    extractCount(statsPayload, ["total_test_questions", "total_questions"]) ||
+    testQuestionsFromTests;
 
   const stats = [
     { value: universitiesCount.toLocaleString(), label: "Universities" },
