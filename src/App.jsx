@@ -6,16 +6,21 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 import Navbar from "./components/layout/Navbar";
 
 // Pages
-import Home from "./pages/Home";
-import Login from "./pages/auth/Login";
-import Register from "./pages/auth/Register";
+import LandingPageModern from "./pages/LandingPageModern";
+import LoginModern from "./pages/auth/LoginModern";
+import RegisterModern from "./pages/auth/RegisterModern";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
-import Dashboard from "./pages/dashboard/Dashboard";
-import ChatPage from "./pages/chat/ChatPage";
-import UniversitiesPage from "./pages/universities/UniversitiesPage";
-import ProgramSearchPage from "./pages/programs/ProgramSearchPage";
-import ProfilePage from "./pages/profile/ProfilePage";
+import DashboardModern from "./pages/dashboard/DashboardModern";
+import ChatPageModern from "./pages/chat/ChatPageModern";
+import UniversitiesPageModern from "./pages/universities/UniversitiesPageModern";
+import ProgramSearchPageModern from "./pages/programs/ProgramSearchPageModern";
+import ProfilePageModern from "./pages/profile/ProfilePageModern";
+import ReportIssuePageModern from "./pages/ReportIssuePageModern";
+import PrepHubModern from "./pages/prep/PrepHubModern";
+import TestTakingModern from "./pages/prep/TestTakingModern";
+import TestResultsModern from "./pages/prep/TestResultsModern";
+import ProgressPageModern from "./pages/prep/ProgressPageModern";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
@@ -35,16 +40,17 @@ function App() {
           <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <Navbar />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<LandingPageModern />} />
+              <Route path="/home" element={<LandingPageModern />} />
+              <Route path="/login" element={<LoginModern />} />
+              <Route path="/register" element={<RegisterModern />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/verify" element={<VerifyEmail />} />
               <Route
                 path="/dashboard"
                 element={
                   <ProtectedRoute>
-                    <Dashboard />
+                    <DashboardModern />
                   </ProtectedRoute>
                 }
               />
@@ -52,7 +58,7 @@ function App() {
                 path="/chat"
                 element={
                   <ProtectedRoute>
-                    <ChatPage />
+                    <ChatPageModern />
                   </ProtectedRoute>
                 }
               />
@@ -60,7 +66,7 @@ function App() {
                 path="/universities"
                 element={
                   <ProtectedRoute>
-                    <UniversitiesPage />
+                    <UniversitiesPageModern />
                   </ProtectedRoute>
                 }
               />
@@ -68,7 +74,7 @@ function App() {
                 path="/programs"
                 element={
                   <ProtectedRoute>
-                    <ProgramSearchPage />
+                    <ProgramSearchPageModern />
                   </ProtectedRoute>
                 }
               />
@@ -76,10 +82,43 @@ function App() {
                 path="/profile"
                 element={
                   <ProtectedRoute>
-                    <ProfilePage />
+                    <ProfilePageModern />
                   </ProtectedRoute>
                 }
               />
+              <Route
+                path="/prep"
+                element={
+                  <ProtectedRoute>
+                    <PrepHubModern />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/prep/test/:testId"
+                element={
+                  <ProtectedRoute>
+                    <TestTakingModern />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/prep/results/:attemptId"
+                element={
+                  <ProtectedRoute>
+                    <TestResultsModern />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/prep/progress"
+                element={
+                  <ProtectedRoute>
+                    <ProgressPageModern />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/report-issue" element={<ReportIssuePageModern />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
