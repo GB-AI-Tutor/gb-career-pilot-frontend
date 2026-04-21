@@ -1,5 +1,5 @@
 import { createElement, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import {
   Menu,
@@ -10,11 +10,15 @@ import {
   MessageSquare,
   GraduationCap,
   Search,
+  LayoutDashboard,
+  BookOpen,
+  Flag,
 } from "lucide-react";
 import Button from "../common/Button";
 
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
@@ -25,15 +29,28 @@ const Navbar = () => {
   };
 
   const navLinks = [
+    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/chat", label: "AI Chat", icon: MessageSquare },
     { to: "/universities", label: "Universities", icon: GraduationCap },
     { to: "/programs", label: "Programs", icon: Search },
+    { to: "/prep", label: "Test Prep", icon: BookOpen },
+    { to: "/report-issue", label: "Report Issue", icon: Flag },
   ];
+
+  const isActive = (path) =>
+    location.pathname === path || location.pathname.startsWith(`${path}/`);
+
+  const navLinkClass = (path) =>
+    `flex items-center gap-2 transition-colors ${
+      isActive(path)
+        ? "text-primary-600 dark:text-primary-400 font-semibold"
+        : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
+    }`;
 
   return (
     <nav className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex items-center justify-between gap-4 h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
@@ -46,13 +63,13 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           {isAuthenticated && (
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden lg:flex items-center gap-5 flex-1 justify-center px-4">
               {navLinks.map(({ to, label, icon }) => {
                 return (
                   <Link
                     key={to}
                     to={to}
-                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    className={navLinkClass(to)}
                   >
                     {createElement(icon, { className: "w-4 h-4" })}
                     {label}
@@ -131,7 +148,7 @@ const Navbar = () => {
             {isAuthenticated && (
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 {mobileMenuOpen ? (
                   <X className="w-6 h-6" />
@@ -145,14 +162,18 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isAuthenticated && mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-700">
             {navLinks.map(({ to, label, icon }) => {
               return (
                 <Link
                   key={to}
                   to={to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                  className={`flex items-center gap-2 px-4 py-3 rounded-lg ${
+                    isActive(to)
+                      ? "bg-primary-50 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  }`}
                 >
                   {createElement(icon, { className: "w-4 h-4" })}
                   {label}
