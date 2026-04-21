@@ -1,6 +1,12 @@
 import EligibilityBadge from "./EligibilityBadge";
 import { formatCurrency } from "../../utils/formatters";
-import { ArrowUpRight, Building2, DollarSign, GraduationCap, MapPin } from "lucide-react";
+import {
+  ArrowUpRight,
+  Building2,
+  DollarSign,
+  GraduationCap,
+  MapPin,
+} from "lucide-react";
 
 const ProgramCard = ({ program }) => {
   const getTextValue = (value) => {
@@ -20,7 +26,10 @@ const ProgramCard = ({ program }) => {
   };
 
   const universitySource =
-    program?.university || program?.universities || program?.university_data || {};
+    program?.university ||
+    program?.universities ||
+    program?.university_data ||
+    {};
 
   const universityName =
     getTextValue(universitySource?.name) ||

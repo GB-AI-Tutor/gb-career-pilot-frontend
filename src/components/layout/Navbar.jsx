@@ -66,11 +66,7 @@ const Navbar = () => {
             <div className="hidden lg:flex items-center gap-5 flex-1 justify-center px-4">
               {navLinks.map(({ to, label, icon }) => {
                 return (
-                  <Link
-                    key={to}
-                    to={to}
-                    className={navLinkClass(to)}
-                  >
+                  <Link key={to} to={to} className={navLinkClass(to)}>
                     {createElement(icon, { className: "w-4 h-4" })}
                     {label}
                   </Link>
