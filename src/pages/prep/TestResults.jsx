@@ -526,7 +526,7 @@ const TestResults = () => {
                           })}
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-3 mb-5">
+                        {/* <div className="grid md:grid-cols-3 gap-3 mb-5">
                           <div className="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4">
                             <p className="text-xs font-semibold text-red-700 dark:text-red-300 uppercase tracking-wide mb-1">
                               Your Answer
@@ -551,7 +551,7 @@ const TestResults = () => {
                               {q.isCorrect ? "Correct" : "Needs review"}
                             </p>
                           </div>
-                        </div>
+                        </div> */}
 
                         {q.explanation && (
                           <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-800">
