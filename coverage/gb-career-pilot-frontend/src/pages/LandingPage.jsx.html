@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/430</span>
+                <span class='fraction'>0/419</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/430</span>
+                <span class='fraction'>0/419</span>
             </div>
         
             
@@ -599,14 +599,7 @@
 <a name='L534'></a><a href='#L534'>534</a>
 <a name='L535'></a><a href='#L535'>535</a>
 <a name='L536'></a><a href='#L536'>536</a>
-<a name='L537'></a><a href='#L537'>537</a>
-<a name='L538'></a><a href='#L538'>538</a>
-<a name='L539'></a><a href='#L539'>539</a>
-<a name='L540'></a><a href='#L540'>540</a>
-<a name='L541'></a><a href='#L541'>541</a>
-<a name='L542'></a><a href='#L542'>542</a>
-<a name='L543'></a><a href='#L543'>543</a>
-<a name='L544'></a><a href='#L544'>544</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L537'></a><a href='#L537'>537</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -777,13 +770,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -792,17 +778,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1320,6 +1306,7 @@ import {
 <span class="cstat-no" title="statement not covered" >    "university_names",</span>
 <span class="cstat-no" title="statement not covered" >  ]);</span>
 &nbsp;
+  // 1. Keep the programs count logic (it's working via the public stats)
 <span class="cstat-no" title="statement not covered" >  const programsCount = extractCount(statsPayload, [</span>
 <span class="cstat-no" title="statement not covered" >    "Programs",</span>
 <span class="cstat-no" title="statement not covered" >    "total_programs",</span>
@@ -1328,27 +1315,19 @@ import {
 <span class="cstat-no" title="statement not covered" >    "program_names",</span>
 <span class="cstat-no" title="statement not covered" >  ]);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const testsCount =</span>
-<span class="cstat-no" title="statement not covered" >    extractCount(testsResponse, ["total_tests", "tests_count", "tests"]) ||</span>
-<span class="cstat-no" title="statement not covered" >    extractCount(statsPayload, [</span>
-<span class="cstat-no" title="statement not covered" >      "total_tests",</span>
-<span class="cstat-no" title="statement not covered" >      "tests_count",</span>
-<span class="cstat-no" title="statement not covered" >      "practice_tests_count",</span>
-<span class="cstat-no" title="statement not covered" >      "tests",</span>
-<span class="cstat-no" title="statement not covered" >    ]);</span>
-&nbsp;
+  // 2. Define the fallback calculation for questions first
 <span class="cstat-no" title="statement not covered" >  const testQuestionsFromTests = tests.reduce(</span>
 <span class="cstat-no" title="statement not covered" >    (sum, test) =&gt; sum + Number(test?.total_questions || 0),</span>
 <span class="cstat-no" title="statement not covered" >    0,</span>
 <span class="cstat-no" title="statement not covered" >  );</span>
+&nbsp;
+  // 3. Prioritize public statsPayload to avoid the 403 Forbidden error for guests
+<span class="cstat-no" title="statement not covered" >  const testsCount =</span>
+<span class="cstat-no" title="statement not covered" >    extractCount(statsPayload, ["total_tests", "tests_count"]) || tests.length;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >  const testQuestionsCount =</span>
-<span class="cstat-no" title="statement not covered" >    testQuestionsFromTests ||</span>
-<span class="cstat-no" title="statement not covered" >    extractCount(statsPayload, [</span>
-<span class="cstat-no" title="statement not covered" >      "total_test_questions",</span>
-<span class="cstat-no" title="statement not covered" >      "test_questions_count",</span>
-<span class="cstat-no" title="statement not covered" >      "questions_count",</span>
-<span class="cstat-no" title="statement not covered" >      "total_questions",</span>
-<span class="cstat-no" title="statement not covered" >    ]);</span>
+<span class="cstat-no" title="statement not covered" >    extractCount(statsPayload, ["total_test_questions", "total_questions"]) ||</span>
+<span class="cstat-no" title="statement not covered" >    testQuestionsFromTests;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  const stats = [</span>
 <span class="cstat-no" title="statement not covered" >    { value: universitiesCount.toLocaleString(), label: "Universities" },</span>
@@ -1699,7 +1678,7 @@ import {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-04-21T18:17:55.098Z
+                at 2026-04-21T18:47:01.918Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
