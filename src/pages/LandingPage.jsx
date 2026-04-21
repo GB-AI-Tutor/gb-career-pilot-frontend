@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { statsAPI } from "../api/stats";
 import { getTests } from "../api/tests";
+import { useAuth } from "../hooks/useAuth";
 import "../styles/design-system.css";
 
 const unwrapPayload = (payload) => {
@@ -86,6 +87,7 @@ const extractCount = (payload, keys = []) => {
 
 const LandingPage = () => {
   const heroRef = useRef(null);
+  const { isAuthenticated } = useAuth();
 
   const { data: statsResponse } = useQuery({
     queryKey: ["landing-stats"],
@@ -95,6 +97,8 @@ const LandingPage = () => {
   const { data: testsResponse } = useQuery({
     queryKey: ["landing-tests"],
     queryFn: () => getTests(),
+    enabled: isAuthenticated,
+    retry: false,
   });
 
   // Scroll animation observer
@@ -173,15 +177,27 @@ const LandingPage = () => {
     "program_names",
   ]);
 
-  const testsCount = extractCount(testsResponse, [
-    "total_tests",
-    "tests_count",
-    "tests",
-  ]);
-  const testQuestionsCount = tests.reduce(
+  const testsCount =
+    extractCount(testsResponse, ["total_tests", "tests_count", "tests"]) ||
+    extractCount(statsPayload, [
+      "total_tests",
+      "tests_count",
+      "practice_tests_count",
+      "tests",
+    ]);
+
+  const testQuestionsFromTests = tests.reduce(
     (sum, test) => sum + Number(test?.total_questions || 0),
     0,
   );
+  const testQuestionsCount =
+    testQuestionsFromTests ||
+    extractCount(statsPayload, [
+      "total_test_questions",
+      "test_questions_count",
+      "questions_count",
+      "total_questions",
+    ]);
 
   const stats = [
     { value: universitiesCount.toLocaleString(), label: "Universities" },
