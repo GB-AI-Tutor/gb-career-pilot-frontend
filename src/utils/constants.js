@@ -25,7 +25,7 @@ export const API_ENDPOINTS = {
     TEST: "/api/v1/groq/test-api",
   },
   STATS: {
-    GET: "/api/v1/stats/stats",
+    GET: "/api/v1/stats",
   },
 };
 

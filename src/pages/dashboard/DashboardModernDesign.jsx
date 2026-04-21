@@ -1,5 +1,6 @@
 import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import {
   MessageCircle,
   School,
@@ -15,10 +16,17 @@ import {
   MessageCircle as ChatIcon,
   Zap,
 } from "lucide-react";
+import { getUserStats } from "../../api/tests";
 import "../../styles/design-system.css";
 
 const DashboardModernDesign = () => {
   const { user, loading } = useAuth();
+  const { data: userStats } = useQuery({
+    queryKey: ["dashboard-user-stats"],
+    queryFn: getUserStats,
+    enabled: !!user,
+    retry: false,
+  });
 
   if (loading) {
     return (
@@ -39,6 +47,8 @@ const DashboardModernDesign = () => {
   const readinessPercentage = user?.fsc_percentage
     ? Math.min(user.fsc_percentage, 100)
     : 0;
+  const completedTests = Number(userStats?.total_attempts || 0);
+  const attemptedQuestions = Number(userStats?.total_questions_attempted || 0);
 
   return (
     <div className="bg-[#f8f9fa] font-body text-[#191c1d]">
@@ -127,6 +137,25 @@ const DashboardModernDesign = () => {
                         Start Chatting
                       </Link>
                     </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-[#f3f4f5] rounded-xl px-4 py-3">
+                    <p className="text-xs uppercase tracking-wider text-[#44474e] font-semibold">
+                      Practice Tests
+                    </p>
+                    <p className="text-2xl font-black text-[#002147] mt-1">
+                      {completedTests.toLocaleString()}
+                    </p>
+                  </div>
+                  <div className="bg-[#f3f4f5] rounded-xl px-4 py-3">
+                    <p className="text-xs uppercase tracking-wider text-[#44474e] font-semibold">
+                      Test Questions
+                    </p>
+                    <p className="text-2xl font-black text-[#002147] mt-1">
+                      {attemptedQuestions.toLocaleString()}
+                    </p>
                   </div>
                 </div>
               </div>
