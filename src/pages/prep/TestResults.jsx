@@ -446,13 +446,6 @@ const TestResults = () => {
                   }}
                 >
                   {reviewedQuestions.map((q, index) => {
-                    const userAnswerLabel = q.userAnswer
-                      ? q.userAnswer.toUpperCase()
-                      : "-";
-                    const correctAnswerLabel = q.correctAnswer
-                      ? q.correctAnswer.toUpperCase()
-                      : "-";
-
                     return (
                       <div
                         key={q.question_id || `${q.question_text}-${index}`}
@@ -525,33 +518,6 @@ const TestResults = () => {
                             );
                           })}
                         </div>
-
-                        {/* <div className="grid md:grid-cols-3 gap-3 mb-5">
-                          <div className="rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4">
-                            <p className="text-xs font-semibold text-red-700 dark:text-red-300 uppercase tracking-wide mb-1">
-                              Your Answer
-                            </p>
-                            <p className="text-base font-bold text-red-900 dark:text-red-100">
-                              {userAnswerLabel}
-                            </p>
-                          </div>
-                          <div className="rounded-xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-4">
-                            <p className="text-xs font-semibold text-green-700 dark:text-green-300 uppercase tracking-wide mb-1">
-                              Correct Answer
-                            </p>
-                            <p className="text-base font-bold text-green-900 dark:text-green-100">
-                              {correctAnswerLabel}
-                            </p>
-                          </div>
-                          <div className="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
-                            <p className="text-xs font-semibold text-blue-700 dark:text-blue-300 uppercase tracking-wide mb-1">
-                              Review Status
-                            </p>
-                            <p className="text-base font-bold text-blue-900 dark:text-blue-100">
-                              {q.isCorrect ? "Correct" : "Needs review"}
-                            </p>
-                          </div>
-                        </div> */}
 
                         {q.explanation && (
                           <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-200 dark:border-blue-800">
