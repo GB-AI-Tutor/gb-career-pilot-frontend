@@ -56,7 +56,7 @@ const Navbar = () => {
             <Link to="/" className="flex items-center gap-2">
               <GraduationCap className="w-8 h-8 text-primary-600" />
               <span className="text-xl font-bold text-gray-900 dark:text-white">
-                GB Career Pilot
+                NorthStar
               </span>
             </Link>
           </div>
