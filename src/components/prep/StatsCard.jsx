@@ -91,7 +91,7 @@
 // export default StatsCard;
 import { createElement } from "react";
 
-const StatsCard = ({ title, value, subtitle, icon, color = "primary" }) => {
+const StatsCard = ({ title, value, subtitle, icon }) => {
   return (
     <div className="bg-white rounded-2xl p-8 transition-all duration-500 hover:-translate-y-1 shadow-[0_24px_48px_-12px_rgba(0,10,30,0.04)]">
       <div className="flex items-center justify-between">
