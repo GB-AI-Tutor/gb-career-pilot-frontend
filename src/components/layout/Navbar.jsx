@@ -81,13 +81,13 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  className="bg-primary-600 flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                 >
                   <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold">
-                    {user?.name?.charAt(0).toUpperCase() || "U"}
+                    {user?.full_name?.charAt(0).toUpperCase() || "U"}
                   </div>
-                  <span className="hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {user?.name || "User"}
+                  <span className="text-white hidden md:block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {user?.full_name || "User"}
                   </span>
                 </button>
 

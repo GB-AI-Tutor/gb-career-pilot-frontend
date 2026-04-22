@@ -35,15 +35,24 @@ apiClient.interceptors.response.use(
 
     // If error is 401 and we haven't retried yet
     if (error.response?.status === 401 && !originalRequest._retry) {
+      
+      // FIX: Do not trigger a redirect if we are already on the login endpoint
+      // This prevents the "Wrong Password" reload loop
+      if (originalRequest.url.includes("/auth/login")) {
+        return Promise.reject(error);
+      }
+
       originalRequest._retry = true;
 
       try {
         const refreshToken = localStorage.getItem("refresh_token");
 
         if (!refreshToken) {
-          // No refresh token, redirect to login
-          localStorage.clear();
-          window.location.href = "/login";
+          // Only clear and redirect if we aren't already on the login page
+          if (window.location.pathname !== "/login") {
+            localStorage.clear();
+            window.location.href = "/login";
+          }
           return Promise.reject(error);
         }
 
