@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import {
@@ -19,29 +19,43 @@ const LoginModern = () => {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if already logged in
-  if (isAuthenticated) {
-    navigate("/dashboard");
-  }
+  // FIX: Move redirect logic into useEffect
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]); // Only runs when auth status changes
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // This stops the standard HTML form reload
     setLoading(true);
     setErrorMessage("");
 
     try {
       await login({ email, password });
+      // Navigation here is fine because it's inside an event handler
       navigate("/dashboard");
-    } catch (error) {
-      console.error("Login error:", error);
-      const message =
-        error?.response?.data?.detail ||
-        error?.response?.data?.message ||
-        "Wrong email or password. Please check your credentials and try again.";
-      setErrorMessage(message);
-    } finally {
-      setLoading(false);
-    }
+    // src/pages/auth/LoginModern.jsx
+
+} catch (error) {
+  console.error("Login error:", error);
+  
+  // Safely extract a string from the FastAPI response
+  const detail = error?.response?.data?.detail;
+  let message = "Wrong email or password.";
+  
+  if (typeof detail === "string") {
+    message = detail;
+  } else if (Array.isArray(detail)) {
+    message = detail[0]?.msg || "Invalid input data.";
+  } else if (error?.response?.data?.message) {
+    message = error.response.data.message;
+  }
+  
+  setErrorMessage(message); // Now guaranteed to be a string
+} finally {
+  setLoading(false);
+}
   };
 
   return (

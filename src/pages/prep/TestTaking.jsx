@@ -265,166 +265,79 @@ const TestTaking = () => {
   }
 
   const currentQuestion = questions[currentQuestionIndex];
-  const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+  // const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pb-20 md:pb-4">
-      {/* Header - Sticky */}
-      <div className="sticky top-16 z-30 bg-white dark:bg-gray-800 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
-            {/* Test Title */}
-            <div>
-              <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-                {testTitle}
-              </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Question {currentQuestionIndex + 1} of {questions.length}
-              </p>
-            </div>
-
-            {/* Timer & Actions */}
-            <div className="flex items-center gap-3">
-              <TestTimer
-                deadlineMs={timerDeadline}
-                onExpire={handleTimerExpire}
-              />
-
-              <button
-                onClick={() => setShowQuestionGrid(true)}
-                className="md:hidden p-2 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600"
-              >
-                <Grid3x3 className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Progress Bar */}
-          <div className="mt-4 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-            <div
-              className="bg-primary-600 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Question Display - Main Column */}
-          <div className="lg:col-span-2 space-y-4">
-            <QuestionDisplay
-              question={currentQuestion}
-              selectedAnswer={answers[currentQuestion?.id]}
-              onAnswerSelect={handleAnswerSelect}
-              questionNumber={currentQuestionIndex + 1}
-              onReport={handleReportQuestion}
-            />
-
-            {/* Navigation Buttons - Desktop */}
-            <div className="hidden md:flex items-center justify-between">
-              <Button
-                variant="secondary"
-                onClick={goToPreviousQuestion}
-                disabled={currentQuestionIndex === 0}
-              >
-                <ChevronLeft className="w-4 h-4 mr-1" />
-                Previous
-              </Button>
-
-              <div className="flex gap-2">
-                <Button
-                  variant="secondary"
-                  onClick={() =>
-                    autosaveMutation.mutate({ attemptId, answers })
-                  }
-                >
-                  <Save className="w-4 h-4 mr-1" />
-                  Save Progress
-                </Button>
-
-                <Button onClick={handleSubmit} disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <Loader2 className="w-4 h-4 mr-1 animate-spin" />
-                  ) : (
-                    <Send className="w-4 h-4 mr-1" />
-                  )}
-                  Submit Test
-                </Button>
+ return (
+    <div className="min-h-screen bg-[#f8f9fa] pb-24">
+      {/* Editorial Header */}
+      <div className="bg-white border-b border-[#c4c6cf]/15 sticky top-16 z-30">
+        <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-manrope font-black text-[#000a1e] tracking-tight">
+              {testTitle}
+            </h1>
+            <div className="flex items-center gap-3 mt-1">
+              <div className="h-1.5 w-32 bg-[#f3f4f5] rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-[#002147] to-[#000a1e] transition-all duration-500" 
+                  style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+                />
               </div>
-
-              <Button
-                variant="secondary"
-                onClick={goToNextQuestion}
-                disabled={currentQuestionIndex === questions.length - 1}
-              >
-                Next
-                <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
+              <span className="text-xs font-bold text-[#000a1e]/40 uppercase tracking-widest">
+                Progress: {Math.round(((currentQuestionIndex + 1) / questions.length) * 100)}%
+              </span>
             </div>
           </div>
-
-          {/* Question Grid - Sidebar (Desktop) */}
-          <div className="hidden lg:block">
-            <div className="sticky top-36">
-              <QuestionGrid
-                questions={questions}
-                answers={answers}
-                currentIndex={currentQuestionIndex}
-                onNavigate={goToQuestion}
-              />
-            </div>
-          </div>
+          <TestTimer deadlineMs={timerDeadline} onExpire={handleTimerExpire} />
         </div>
       </div>
 
-      {/* Mobile Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t dark:border-gray-700 p-4 md:hidden z-40">
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <Button
-            variant="secondary"
-            onClick={goToPreviousQuestion}
-            disabled={currentQuestionIndex === 0}
-            className="flex-1"
-          >
-            <ChevronLeft className="w-4 h-4" />
-          </Button>
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="lg:col-span-8 space-y-8">
+          <QuestionDisplay
+            question={currentQuestion}
+            selectedAnswer={answers[currentQuestion?.id]}
+            onAnswerSelect={handleAnswerSelect}
+            questionNumber={currentQuestionIndex + 1}
+            onReport={handleReportQuestion}
+          />
 
-          <Button
-            variant="secondary"
-            onClick={goToNextQuestion}
-            disabled={currentQuestionIndex === questions.length - 1}
-            className="flex-1"
-          >
-            <ChevronRight className="w-4 h-4" />
-          </Button>
+          <div className="flex justify-between items-center bg-[#f3f4f5] p-4 rounded-2xl">
+            <button 
+              onClick={goToPreviousQuestion} 
+              disabled={currentQuestionIndex === 0}
+              className="flex items-center gap-2 font-bold text-[#000a1e] px-6 py-3 disabled:opacity-20"
+            >
+              <ChevronLeft className="w-5 h-5" /> Previous
+            </button>
+            <button 
+              onClick={handleSubmit} 
+              className="px-8 py-3 bg-gradient-to-br from-[#002147] to-[#000a1e] text-white rounded-xl font-bold shadow-lg hover:scale-105 transition-transform"
+            >
+              Submit Examination
+            </button>
+            <button 
+              onClick={goToNextQuestion} 
+              disabled={currentQuestionIndex === questions.length - 1}
+              className="flex items-center gap-2 font-bold text-[#000a1e] px-6 py-3 disabled:opacity-20"
+            >
+              Next <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
 
-          <Button
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-            className="flex-1"
-          >
-            {isSubmitting ? (
-              <Loader2 className="w-4 h-4 animate-spin" />
-            ) : (
-              <Send className="w-4 h-4" />
-            )}
-          </Button>
+        <div className="lg:col-span-4">
+          <QuestionGrid
+            questions={questions}
+            answers={answers}
+            currentIndex={currentQuestionIndex}
+            onNavigate={goToQuestion}
+          />
         </div>
       </div>
-
-      {/* Question Grid Modal (Mobile) */}
-      <QuestionGrid
-        questions={questions}
-        answers={answers}
-        currentIndex={currentQuestionIndex}
-        onNavigate={goToQuestion}
-        isOpen={showQuestionGrid}
-        onClose={() => setShowQuestionGrid(false)}
-      />
     </div>
   );
+
 };
 
 export default TestTaking;
