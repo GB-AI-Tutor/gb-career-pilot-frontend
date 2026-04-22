@@ -199,6 +199,7 @@ const DashboardModernDesign = () => {
                       <div className="flex gap-2">
                         <span className="px-2 py-1 bg-[#e7e8e9] rounded text-[10px] font-bold text-[#44474e] uppercase">
                           Top 10 Nationally
+                          Top 10 Nationally
                         </span>
                         <span className="px-2 py-1 bg-[#e7e8e9] rounded text-[10px] font-bold text-[#44474e] uppercase">
                           Safety Tier
@@ -252,7 +253,7 @@ const DashboardModernDesign = () => {
                   <Calendar className="w-5 h-5 text-[#83fba5]" />
                   Upcoming Deadlines
                 </h3>
-
+                
                 {/* <div className="space-y-6">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-white/10 rounded-xl flex flex-col items-center justify-center border border-white/5">
@@ -302,6 +303,7 @@ const DashboardModernDesign = () => {
                       </p>
                     </div>
                   </div>
+                </div> */}
                 </div> */}
                 <button className="w-full mt-8 py-3 bg-gradient-to-br from-[#002147] to-[#000a1e] text-white font-bold rounded-xl transition-all hover:opacity-90">
                   Sync to Calendar
