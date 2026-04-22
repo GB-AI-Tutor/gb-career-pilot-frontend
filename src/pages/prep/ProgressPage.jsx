@@ -572,9 +572,15 @@ const ProgressPageModern = () => {
       <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa] text-center p-6">
         <div>
           <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-[#000a1e]">Connection Interrupted</h2>
-          <p className="text-[#000a1e]/60 mb-6">We couldn't retrieve your academic record.</p>
-          <Link to="/prep"><Button>Return to Prep Hub</Button></Link>
+          <h2 className="text-2xl font-bold text-[#000a1e]">
+            Connection Interrupted
+          </h2>
+          <p className="text-[#000a1e]/60 mb-6">
+            We couldn't retrieve your academic record.
+          </p>
+          <Link to="/prep">
+            <Button>Return to Prep Hub</Button>
+          </Link>
         </div>
       </div>
     );
@@ -600,7 +606,8 @@ const ProgressPageModern = () => {
             </span>
           </div>
           <h1 className="text-6xl font-manrope font-black text-[#000a1e] mb-4 tracking-tighter">
-            Your Academic <span className="italic text-[#006d36]">Evolution</span>
+            Your Academic{" "}
+            <span className="italic text-[#006d36]">Evolution</span>
           </h1>
           <p className="text-xl text-[#000a1e]/50 font-inter leading-relaxed">
             Quantifying your path to excellence through AI-driven analytics.
@@ -612,44 +619,53 @@ const ProgressPageModern = () => {
 
         {/* Stats Grid - No borders, just tonal shifts */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-          <StatsCard 
-            title="Campaigns" 
-            value={stats?.total_attempts || 0} 
-            subtitle="Tests Completed" 
-            icon={FileText} 
+          <StatsCard
+            title="Campaigns"
+            value={stats?.total_attempts || 0}
+            subtitle="Tests Completed"
+            icon={FileText}
           />
-          <StatsCard 
-            title="Precision" 
-            value={`${Number(stats?.overall_accuracy || 0).toFixed(1)}%`} 
-            subtitle="Target Accuracy" 
-            icon={Target} 
+          <StatsCard
+            title="Precision"
+            value={`${Number(stats?.overall_accuracy || 0).toFixed(1)}%`}
+            subtitle="Target Accuracy"
+            icon={Target}
           />
-          <StatsCard 
-            title="Conquered" 
-            value={stats?.total_correct || 0} 
-            subtitle="Correct Answers" 
-            icon={CheckCircle} 
+          <StatsCard
+            title="Conquered"
+            value={stats?.total_correct || 0}
+            subtitle="Correct Answers"
+            icon={CheckCircle}
           />
-          <StatsCard 
-            title="Zenith" 
-            value={stats?.best_score || 0} 
-            subtitle="Personal Record" 
-            icon={TrendingUp} 
+          <StatsCard
+            title="Zenith"
+            value={stats?.best_score || 0}
+            subtitle="Personal Record"
+            icon={TrendingUp}
           />
         </div>
 
         {/* Recent Performance List */}
         <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-[0_24px_48px_-12px_rgba(0,10,30,0.04)]">
-          <h2 className="text-3xl font-manrope font-black text-[#000a1e] mb-10">Recent Attempts:</h2>
-          
+          <h2 className="text-3xl font-manrope font-black text-[#000a1e] mb-10">
+            Recent Attempts:
+          </h2>
+
           {attempts.length > 0 ? (
             <div className="space-y-4">
               {attempts.map((attempt) => (
-                <div key={attempt.id} className="group flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 rounded-2xl hover:bg-[#f3f4f5] transition-all duration-300 border border-[#c4c6cf]/10">
+                <div
+                  key={attempt.id}
+                  className="group flex flex-col sm:flex-row items-start sm:items-center justify-between p-6 rounded-2xl hover:bg-[#f3f4f5] transition-all duration-300 border border-[#c4c6cf]/10"
+                >
                   <div className="flex items-center gap-6 mb-4 sm:mb-0">
-                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center font-black text-sm shadow-sm ${
-                      (attempt.accuracy || 0) >= 80 ? "bg-[#83fba5] text-[#00743a]" : "bg-[#f3f4f5] text-[#000a1e]"
-                    }`}>
+                    <div
+                      className={`w-14 h-14 rounded-xl flex items-center justify-center font-black text-sm shadow-sm ${
+                        (attempt.accuracy || 0) >= 80
+                          ? "bg-[#83fba5] text-[#00743a]"
+                          : "bg-[#f3f4f5] text-[#000a1e]"
+                      }`}
+                    >
                       {(attempt.accuracy || 0).toFixed(0)}%
                     </div>
                     <div>
@@ -657,11 +673,17 @@ const ProgressPageModern = () => {
                         {attempt.test_title || "Untitled Test"}
                       </h3>
                       <p className="text-[10px] text-[#000a1e]/40 font-black uppercase tracking-widest mt-1">
-                        {attempt.submitted_at ? new Date(attempt.submitted_at).toLocaleDateString() : 'Recent'} • {attempt.score}/{attempt.total_questions} Units
+                        {attempt.submitted_at
+                          ? new Date(attempt.submitted_at).toLocaleDateString()
+                          : "Recent"}{" "}
+                        • {attempt.score}/{attempt.total_questions} Units
                       </p>
                     </div>
                   </div>
-                  <Link to={`/prep/results/${attempt.id}`} className="w-full sm:w-auto">
+                  <Link
+                    to={`/prep/results/${attempt.id}`}
+                    className="w-full sm:w-auto"
+                  >
                     <button className="w-full sm:w-auto px-8 py-2.5 rounded-full border border-[#000a1e]/10 text-xs font-bold hover:bg-[#000a1e] hover:text-white transition-all uppercase tracking-widest">
                       Review Matrix
                     </button>
@@ -671,7 +693,9 @@ const ProgressPageModern = () => {
             </div>
           ) : (
             <div className="text-center py-20 bg-[#f8f9fa] rounded-3xl">
-              <p className="text-[#000a1e]/40 font-bold uppercase tracking-widest">No data points recorded yet</p>
+              <p className="text-[#000a1e]/40 font-bold uppercase tracking-widest">
+                No data points recorded yet
+              </p>
             </div>
           )}
         </div>
