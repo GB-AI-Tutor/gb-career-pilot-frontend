@@ -38,13 +38,19 @@ const TestTimer = ({ deadlineMs, onExpire }) => {
   //   }
   // };
 
- if (!deadlineMs) return null;
+  if (!deadlineMs) return null;
 
   return (
-    <div className={`backdrop-blur-[20px] bg-white/80 px-6 py-3 rounded-2xl flex items-center gap-3 shadow-soft font-manrope font-black text-lg transition-all duration-500 border border-white/40 ${
-      isExpired ? "text-red-600 scale-110" : "text-[#000a1e]"
-    }`}>
-      {isExpired ? <AlertCircle className="w-5 h-5 animate-pulse" /> : <Clock className="w-5 h-5 text-[#006d36]" />}
+    <div
+      className={`backdrop-blur-[20px] bg-white/80 px-6 py-3 rounded-2xl flex items-center gap-3 shadow-soft font-manrope font-black text-lg transition-all duration-500 border border-white/40 ${
+        isExpired ? "text-red-600 scale-110" : "text-[#000a1e]"
+      }`}
+    >
+      {isExpired ? (
+        <AlertCircle className="w-5 h-5 animate-pulse" />
+      ) : (
+        <Clock className="w-5 h-5 text-[#006d36]" />
+      )}
       <span>{formattedTime}</span>
     </div>
   );
