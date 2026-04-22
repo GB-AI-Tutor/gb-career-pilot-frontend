@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import Navbar from "./components/layout/Navbar";
+import { Analytics } from "@vercel/analytics/react";
 
 // Pages
 import LandingPageModern from "./pages/LandingPageModern";
@@ -129,6 +130,10 @@ function App() {
             </Routes>
           </div>
           <Toaster position="top-right" />
+          <Toaster position="top-right" />
+
+          {/* to track all routes and user interactions */}
+          <Analytics />
         </Router>
       </AuthProvider>
     </QueryClientProvider>
