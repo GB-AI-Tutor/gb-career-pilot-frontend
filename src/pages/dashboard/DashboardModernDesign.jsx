@@ -252,7 +252,7 @@ const DashboardModernDesign = () => {
                   <Calendar className="w-5 h-5 text-[#83fba5]" />
                   Upcoming Deadlines
                 </h3>
-                
+
                 {/* <div className="space-y-6">
                   <div className="flex gap-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-white/10 rounded-xl flex flex-col items-center justify-center border border-white/5">

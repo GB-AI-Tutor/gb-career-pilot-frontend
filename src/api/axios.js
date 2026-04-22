@@ -35,7 +35,6 @@ apiClient.interceptors.response.use(
 
     // If error is 401 and we haven't retried yet
     if (error.response?.status === 401 && !originalRequest._retry) {
-      
       // FIX: Do not trigger a redirect if we are already on the login endpoint
       // This prevents the "Wrong Password" reload loop
       if (originalRequest.url.includes("/auth/login")) {

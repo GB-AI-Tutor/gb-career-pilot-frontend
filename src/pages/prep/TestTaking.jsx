@@ -25,7 +25,7 @@ const TestTaking = () => {
   // State
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [showQuestionGrid, setShowQuestionGrid] = useState(false);
+  // const [showQuestionGrid, setShowQuestionGrid] = useState(false);
   const [attemptId, setAttemptId] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [timerDeadline, setTimerDeadline] = useState(null);
@@ -267,7 +267,7 @@ const TestTaking = () => {
   const currentQuestion = questions[currentQuestionIndex];
   // const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
 
- return (
+  return (
     <div className="min-h-screen bg-[#f8f9fa] pb-24">
       {/* Editorial Header */}
       <div className="bg-white border-b border-[#c4c6cf]/15 sticky top-16 z-30">
@@ -278,13 +278,19 @@ const TestTaking = () => {
             </h1>
             <div className="flex items-center gap-3 mt-1">
               <div className="h-1.5 w-32 bg-[#f3f4f5] rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-[#002147] to-[#000a1e] transition-all duration-500" 
-                  style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+                <div
+                  className="h-full bg-gradient-to-r from-[#002147] to-[#000a1e] transition-all duration-500"
+                  style={{
+                    width: `${((currentQuestionIndex + 1) / questions.length) * 100}%`,
+                  }}
                 />
               </div>
               <span className="text-xs font-bold text-[#000a1e]/40 uppercase tracking-widest">
-                Progress: {Math.round(((currentQuestionIndex + 1) / questions.length) * 100)}%
+                Progress:{" "}
+                {Math.round(
+                  ((currentQuestionIndex + 1) / questions.length) * 100,
+                )}
+                %
               </span>
             </div>
           </div>
@@ -303,21 +309,21 @@ const TestTaking = () => {
           />
 
           <div className="flex justify-between items-center bg-[#f3f4f5] p-4 rounded-2xl">
-            <button 
-              onClick={goToPreviousQuestion} 
+            <button
+              onClick={goToPreviousQuestion}
               disabled={currentQuestionIndex === 0}
               className="flex items-center gap-2 font-bold text-[#000a1e] px-6 py-3 disabled:opacity-20"
             >
               <ChevronLeft className="w-5 h-5" /> Previous
             </button>
-            <button 
-              onClick={handleSubmit} 
+            <button
+              onClick={handleSubmit}
               className="px-8 py-3 bg-gradient-to-br from-[#002147] to-[#000a1e] text-white rounded-xl font-bold shadow-lg hover:scale-105 transition-transform"
             >
               Submit Examination
             </button>
-            <button 
-              onClick={goToNextQuestion} 
+            <button
+              onClick={goToNextQuestion}
               disabled={currentQuestionIndex === questions.length - 1}
               className="flex items-center gap-2 font-bold text-[#000a1e] px-6 py-3 disabled:opacity-20"
             >
@@ -337,7 +343,6 @@ const TestTaking = () => {
       </div>
     </div>
   );
-
 };
 
 export default TestTaking;
