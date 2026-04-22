@@ -11,6 +11,7 @@ import LoginModern from "./pages/auth/LoginModern";
 import RegisterModern from "./pages/auth/RegisterModern";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+import UpdatePassword from "./pages/auth/UpdatePassword";
 import DashboardModern from "./pages/dashboard/DashboardModern";
 import ChatPageModern from "./pages/chat/ChatPageModern";
 import UniversitiesPageModern from "./pages/universities/UniversitiesPageModern";
@@ -45,6 +46,11 @@ function App() {
               <Route path="/login" element={<LoginModern />} />
               <Route path="/register" element={<RegisterModern />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/update-password" element={<UpdatePassword />} />
+              <Route
+                path="/update-password/:token"
+                element={<UpdatePassword />}
+              />
               <Route path="/verify" element={<VerifyEmail />} />
               <Route
                 path="/dashboard"

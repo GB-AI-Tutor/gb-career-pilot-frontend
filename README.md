@@ -113,9 +113,19 @@ Create `.env` file:
 # Backend API URL
 VITE_API_BASE_URL=http://localhost:8000
 
+# Supabase (forgot/update password)
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+
 # For production:
 # VITE_API_BASE_URL=https://gb-career-pilot-api.onrender.com
 ```
+
+For Supabase password recovery to work:
+
+1. In Supabase Auth settings, set your site URL (for example, `http://localhost:5173`).
+2. Add a redirect URL for the reset flow: `http://localhost:5173/update-password`.
+3. Ensure users that need reset links are managed by Supabase Auth.
 
 ---
 

@@ -1,4 +1,5 @@
 import apiClient from "./axios";
+import { supabase } from "../lib/supabaseClient";
 
 const AUTH_BASE = "/api/v1/auth";
 
@@ -42,8 +43,22 @@ export const authAPI = {
 
   // Forgot password
   forgotPassword: async (email) => {
-    const response = await apiClient.post(`${AUTH_BASE}/forgot-password`, {
-      email,
+    const redirectTo = `${window.location.origin}/update-password`;
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo,
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    return { message: "Reset link sent" };
+  },
+
+  // Update password using backend endpoint and refresh_token cookie
+  resetPassword: async ({ new_password }) => {
+    const response = await apiClient.post(`${AUTH_BASE}/update-password`, null, {
+      params: { new_password },
     });
     return response.data;
   },
