@@ -70,7 +70,10 @@ export const AuthProvider = ({ children }) => {
       toast.success("Login successful!");
       return userData;
     } catch (error) {
-      const message = error.response?.data?.detail || "Login failed";
+      const message =
+        error.response?.data?.detail ||
+        error.response?.data?.message ||
+        "Wrong email or password. Please check your credentials and try again.";
       toast.error(message);
       throw error;
     }

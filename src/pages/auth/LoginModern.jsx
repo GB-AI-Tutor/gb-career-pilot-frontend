@@ -15,6 +15,7 @@ const LoginModern = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -26,12 +27,18 @@ const LoginModern = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMessage("");
 
     try {
       await login({ email, password });
       navigate("/dashboard");
     } catch (error) {
       console.error("Login error:", error);
+      const message =
+        error?.response?.data?.detail ||
+        error?.response?.data?.message ||
+        "Wrong email or password. Please check your credentials and try again.";
+      setErrorMessage(message);
     } finally {
       setLoading(false);
     }
@@ -69,6 +76,15 @@ const LoginModern = () => {
           className="card-float bg-white p-8 animate-fade-in-up"
           style={{ animationDelay: "0.1s" }}
         >
+          {errorMessage && (
+            <div
+              role="alert"
+              className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800"
+            >
+              {errorMessage}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Input */}
             <div>

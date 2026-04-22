@@ -5,11 +5,17 @@ import Loader from "../common/Loader";
 import { useAuth } from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
-const ChatInterface = ({ conversationId, onConversationIdChange }) => {
+const ChatInterface = ({
+  conversationId,
+  onConversationIdChange,
+  initialMessage,
+  onInitialMessageConsumed,
+}) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [streaming, setStreaming] = useState(false);
   const messagesEndRef = useRef(null);
+  const initialMessageSentRef = useRef(false);
   const { user } = useAuth();
 
   const scrollToBottom = () => {
@@ -19,6 +25,18 @@ const ChatInterface = ({ conversationId, onConversationIdChange }) => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  useEffect(() => {
+    if (!initialMessage || initialMessageSentRef.current || loading) {
+      return;
+    }
+
+    initialMessageSentRef.current = true;
+    sendMessage(initialMessage).finally(() => {
+      onInitialMessageConsumed?.();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialMessage]);
 
   // Validate message format before sending to backend
   const validateMessages = (messagesToSend) => {
@@ -222,27 +240,27 @@ const ChatInterface = ({ conversationId, onConversationIdChange }) => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white dark:bg-gray-900">
+    <div className="flex h-full min-h-0 flex-col bg-[#f8f9fa]">
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto px-3 py-4 sm:px-4 lg:px-6">
         {messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-center p-8">
-            <div className="text-6xl mb-4">💬</div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+          <div className="flex h-full flex-col items-center justify-center p-6 text-center">
+            <div className="mb-4 text-6xl">💬</div>
+            <h3 className="mb-2 text-2xl font-semibold tracking-[-0.02em] text-[#000a1e]">
               Start a Conversation
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-md">
+            <p className="max-w-md text-sm leading-relaxed text-[#4f627c] sm:text-base">
               Ask me anything about universities, programs, admission
               requirements, or career guidance!
             </p>
-            <div className="mt-6 grid gap-2 max-w-md">
+            <div className="mt-6 grid max-w-md gap-3">
               <button
                 onClick={() =>
                   sendMessage(
                     "What universities should I consider for Computer Science in Pakistan?",
                   )
                 }
-                className="text-left text-white p-3 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="rounded-2xl bg-white/90 p-4 text-left text-[#2e3f58] shadow-[0_16px_40px_-30px_rgba(0,33,71,0.35)] transition-all hover:-translate-y-0.5 hover:bg-white"
               >
                 💻 What universities should I consider for Computer Science in
                 Pakistan?
@@ -253,7 +271,7 @@ const ChatInterface = ({ conversationId, onConversationIdChange }) => {
                     "Tell me about admission requirements of NUST university",
                   )
                 }
-                className="text-left text-white p-3 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="rounded-2xl bg-white/90 p-4 text-left text-[#2e3f58] shadow-[0_16px_40px_-30px_rgba(0,33,71,0.35)] transition-all hover:-translate-y-0.5 hover:bg-white"
               >
                 📋 Tell me about admission requirements of NUST university
               </button>
@@ -265,7 +283,7 @@ const ChatInterface = ({ conversationId, onConversationIdChange }) => {
                       "% FSC to get admission in FAST university?",
                   )
                 }
-                className="text-left text-white p-3 rounded-lg border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                className="rounded-2xl bg-white/90 p-4 text-left text-[#2e3f58] shadow-[0_16px_40px_-30px_rgba(0,33,71,0.35)] transition-all hover:-translate-y-0.5 hover:bg-white"
               >
                 🎯 What are my chances with {user?.fsc_percentage || "85"}% FSC
                 to get admission in FAST university?
@@ -278,13 +296,11 @@ const ChatInterface = ({ conversationId, onConversationIdChange }) => {
               <ChatMessage key={index} message={message} />
             ))}
             {streaming && (
-              <div className="flex gap-3 mb-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+              <div className="mb-4 flex gap-3">
+                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#e7e8e9]">
                   <Loader size="sm" />
                 </div>
-                <div className="text-gray-600 dark:text-gray-400">
-                  Thinking...
-                </div>
+                <div className="text-sm text-[#4f627c]">Thinking...</div>
               </div>
             )}
           </>

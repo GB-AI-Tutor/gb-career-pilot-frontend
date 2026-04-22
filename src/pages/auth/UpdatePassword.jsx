@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, CheckCircle2, KeyRound, Lock, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  KeyRound,
+  Lock,
+  ShieldCheck,
+} from "lucide-react";
 import toast from "react-hot-toast";
 import { authAPI } from "../../api/auth";
 import "../../styles/design-system.css";
@@ -17,7 +23,9 @@ const UpdatePassword = () => {
 
   const validate = () => {
     if (newPassword.length < MIN_PASSWORD_LENGTH) {
-      toast.error(`Password must be at least ${MIN_PASSWORD_LENGTH} characters.`);
+      toast.error(
+        `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`,
+      );
       return false;
     }
 
@@ -79,9 +87,9 @@ const UpdatePassword = () => {
             className="mt-4 max-w-md text-base leading-relaxed text-[#3a4a62]"
             style={{ fontFamily: "Inter, var(--font-body)" }}
           >
-            This private workspace uses your secure reset token to restore access.
-            Choose a strong password to protect your plans, recommendations, and
-            progress.
+            This private workspace uses your secure reset token to restore
+            access. Choose a strong password to protect your plans,
+            recommendations, and progress.
           </p>
         </section>
 
@@ -119,11 +127,14 @@ const UpdatePassword = () => {
               ) : (
                 <>
                   <div className="mb-7 rounded-xl bg-[#e7e8e9] p-4 text-sm text-[#2e3f58]">
-                    Use at least {MIN_PASSWORD_LENGTH} characters. Include letters, numbers, and symbols for stronger protection.
+                    Use at least {MIN_PASSWORD_LENGTH} characters. Include
+                    letters, numbers, and symbols for stronger protection.
                   </div>
 
                   <div className="mb-6 rounded-xl bg-[#eef4ff] p-4 text-sm text-[#1e3a5f]">
-                    Password update requires a valid <span className="font-semibold">refresh_token</span> cookie from your backend flow.
+                    Password update requires a valid{" "}
+                    <span className="font-semibold">refresh_token</span> cookie
+                    from your backend flow.
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-5">
@@ -140,7 +151,9 @@ const UpdatePassword = () => {
                           id="newPassword"
                           type="password"
                           value={newPassword}
-                          onChange={(event) => setNewPassword(event.target.value)}
+                          onChange={(event) =>
+                            setNewPassword(event.target.value)
+                          }
                           autoComplete="new-password"
                           required
                           className="w-full rounded-xl bg-[#f3f4f5] py-3.5 pl-12 pr-4 text-[#000a1e] outline-none ring-0 transition-all duration-200 placeholder:text-[#6b7f97] focus:bg-white focus:ring-2 focus:ring-[#006d36]/35"
@@ -162,7 +175,9 @@ const UpdatePassword = () => {
                           id="confirmPassword"
                           type="password"
                           value={confirmPassword}
-                          onChange={(event) => setConfirmPassword(event.target.value)}
+                          onChange={(event) =>
+                            setConfirmPassword(event.target.value)
+                          }
                           autoComplete="new-password"
                           required
                           className="w-full rounded-xl bg-[#f3f4f5] py-3.5 pl-12 pr-4 text-[#000a1e] outline-none ring-0 transition-all duration-200 placeholder:text-[#6b7f97] focus:bg-white focus:ring-2 focus:ring-[#006d36]/35"

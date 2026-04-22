@@ -5,12 +5,12 @@ const ChatMessage = ({ message }) => {
   const isUser = message.role === "user";
 
   return (
-    <div className={`flex gap-3 ${isUser ? "flex-row-reverse" : ""} mb-4`}>
+    <div className={`mb-4 flex gap-3 ${isUser ? "flex-row-reverse" : ""}`}>
       <div
         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
           isUser
-            ? "bg-primary-600 text-white"
-            : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+            ? "bg-[linear-gradient(135deg,#002147,#000a1e)] text-white shadow-[0_12px_24px_-18px_rgba(0,33,71,0.8)]"
+            : "bg-[#e7e8e9] text-[#000a1e]"
         }`}
       >
         {isUser ? <User className="w-5 h-5" /> : <Bot className="w-5 h-5" />}
@@ -20,16 +20,16 @@ const ChatMessage = ({ message }) => {
         <div
           className={`inline-block max-w-[80%] rounded-lg px-4 py-2 ${
             isUser
-              ? "bg-primary-600 text-white"
-              : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+              ? "bg-[linear-gradient(135deg,#002147,#000a1e)] text-white shadow-[0_16px_36px_-24px_rgba(0,33,71,0.8)]"
+              : "bg-white text-[#000a1e] shadow-[0_16px_36px_-30px_rgba(0,33,71,0.25)] ring-1 ring-[#d9e1ea]/70"
           }`}
         >
-          <div className="whitespace-pre-wrap break-words">
+          <div className="whitespace-pre-wrap break-words text-sm leading-relaxed sm:text-base">
             {message.content}
           </div>
         </div>
         {message.timestamp && (
-          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+          <div className="mt-1 text-xs text-[#6b7f97]">
             {formatDate(message.timestamp)}
           </div>
         )}

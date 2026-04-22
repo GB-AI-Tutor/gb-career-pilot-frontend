@@ -6,7 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+# .eslintignore
+coverage/*
+dist/*
+node_modules/*
 docs/*
 node_modules
 dist

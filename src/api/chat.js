@@ -3,6 +3,12 @@ import apiClient from "./axios";
 const GROQ_BASE = "/api/v1/groq";
 
 export const chatAPI = {
+  // List user conversations
+  listConversations: async () => {
+    const response = await apiClient.get(`${GROQ_BASE}/conversations`);
+    return response.data;
+  },
+
   // Send chat message (streaming)
   sendMessage: async (messages, conversationId = null) => {
     const payload = {

@@ -57,9 +57,13 @@ export const authAPI = {
 
   // Update password using backend endpoint and refresh_token cookie
   resetPassword: async ({ new_password }) => {
-    const response = await apiClient.post(`${AUTH_BASE}/update-password`, null, {
-      params: { new_password },
-    });
+    const response = await apiClient.post(
+      `${AUTH_BASE}/update-password`,
+      null,
+      {
+        params: { new_password },
+      },
+    );
     return response.data;
   },
 };
