@@ -19,9 +19,13 @@ export const chatAPI = {
 
   // Delete one conversation
   deleteConversation: async (conversationId) => {
-    const response = await apiClient.post(`${GROQ_BASE}/delete-conversation`, null, {
-      params: { conv_id: conversationId },
-    });
+    const response = await apiClient.post(
+      `${GROQ_BASE}/delete-conversation`,
+      null,
+      {
+        params: { conv_id: conversationId },
+      },
+    );
     return response.data;
   },
 

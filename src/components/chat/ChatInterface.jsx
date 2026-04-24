@@ -57,9 +57,9 @@
 
 //         setMessages(
 //   loadedMessages
-//     .filter((message) => 
-//       message?.role && 
-//       message?.content && 
+//     .filter((message) =>
+//       message?.role &&
+//       message?.content &&
 //       message.role !== "tool" &&           // exclude tool results
 //       !(message.role === "assistant" && message.tool_calls?.length) // exclude tool-calling turns
 //     )
@@ -390,10 +390,19 @@ const TokenLimitBanner = ({ onDeleteConversation }) => (
     <div className="flex items-start gap-3">
       {/* Icon */}
       <div className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-          <line x1="12" y1="9" x2="12" y2="13"/>
-          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
         </svg>
       </div>
 
@@ -403,7 +412,8 @@ const TokenLimitBanner = ({ onDeleteConversation }) => (
           Conversation limit reached
         </p>
         <p className="mt-1 text-xs leading-relaxed text-amber-700">
-          This conversation has hit the model's context limit. Delete it and start a fresh one to continue chatting.
+          This conversation has hit the model's context limit. Delete it and
+          start a fresh one to continue chatting.
         </p>
       </div>
     </div>
@@ -421,9 +431,19 @@ const TokenLimitBanner = ({ onDeleteConversation }) => (
 // ─── Blocked Input ────────────────────────────────────────────────────────────
 const BlockedInput = () => (
   <div className="flex items-center gap-3 rounded-2xl border border-dashed border-amber-300/70 bg-amber-50/60 px-4 py-3.5">
-    <svg className="flex-shrink-0 text-amber-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    <svg
+      className="flex-shrink-0 text-amber-400"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
     <span className="text-xs text-amber-600">
       Input locked — delete this conversation above to continue
@@ -438,7 +458,7 @@ const ChatInterface = ({
   initialMessage,
   onInitialMessageConsumed,
   initialMessages = [],
-  onConversationDeleted,        // called after successful delete so sidebar refreshes
+  onConversationDeleted, // called after successful delete so sidebar refreshes
 }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -488,21 +508,21 @@ const ChatInterface = ({
           response?.messages || response?.conversation?.messages || [];
 
         setMessages(
-  loadedMessages
-    .filter(
-      (message) =>
-        message?.role &&
-        message?.content &&
-        message.content.trim() !== "" &&          // ← add this
-        message.role !== "tool" &&
-        !(message.role === "assistant" && message.tool_calls?.length),
-    )
-    .map((message) => ({
-      role: message.role,
-      content: message.content,
-      timestamp: message.timestamp || new Date().toISOString(),
-    })),
-);
+          loadedMessages
+            .filter(
+              (message) =>
+                message?.role &&
+                message?.content &&
+                message.content.trim() !== "" && // ← add this
+                message.role !== "tool" &&
+                !(message.role === "assistant" && message.tool_calls?.length),
+            )
+            .map((message) => ({
+              role: message.role,
+              content: message.content,
+              timestamp: message.timestamp || new Date().toISOString(),
+            })),
+        );
       } catch (error) {
         console.error("Failed to load conversation:", error);
         toast.error("Failed to load conversation");
@@ -555,7 +575,7 @@ const ChatInterface = ({
       setMessages([]);
       setTokenLimitHit(false);
       setRequestError(null);
-      onConversationDeleted?.();          // tell parent to reset / refresh sidebar
+      onConversationDeleted?.(); // tell parent to reset / refresh sidebar
     } catch {
       toast.error("Failed to delete conversation");
     }
@@ -563,7 +583,7 @@ const ChatInterface = ({
 
   // ── Send message ───────────────────────────────────────────────────────────
   const sendMessage = async (content) => {
-    if (tokenLimitHit) return;           // extra guard
+    if (tokenLimitHit) return; // extra guard
 
     setRequestError(null);
 
@@ -592,13 +612,13 @@ const ChatInterface = ({
       const token = localStorage.getItem("access_token");
 
       const messagesToSend = [...messages, newMessage]
-  .filter((m) => m.role === "user" || m.role === "assistant")
-  .filter((m) => !m.tool_calls)
-  .filter((m) => m.content && m.content.trim() !== "")  // ← add this
-  .map((m) => ({
-    role: m.role,
-    content: m.content,
-  }));
+        .filter((m) => m.role === "user" || m.role === "assistant")
+        .filter((m) => !m.tool_calls)
+        .filter((m) => m.content && m.content.trim() !== "") // ← add this
+        .map((m) => ({
+          role: m.role,
+          content: m.content,
+        }));
 
       validateMessages(messagesToSend);
 
@@ -691,7 +711,7 @@ const ChatInterface = ({
             if (
               lower.includes("context_length_exceeded") ||
               lower.includes("maximum context length") ||
-              lower.includes("token") && lower.includes("limit")
+              (lower.includes("token") && lower.includes("limit"))
             ) {
               hitLimit = true;
             }
@@ -725,7 +745,10 @@ const ChatInterface = ({
         setMessages((prev) =>
           prev.filter(
             (m) =>
-              !(m.id === streamMessageId && (!m.content || m.content.trim() === "")),
+              !(
+                m.id === streamMessageId &&
+                (!m.content || m.content.trim() === "")
+              ),
           ),
         );
       }
@@ -737,7 +760,9 @@ const ChatInterface = ({
       );
 
       if (error.message === "RATE_LIMIT_EXCEEDED") {
-        toast.error("You're sending messages too quickly. Please wait and try again.");
+        toast.error(
+          "You're sending messages too quickly. Please wait and try again.",
+        );
         return;
       }
 
