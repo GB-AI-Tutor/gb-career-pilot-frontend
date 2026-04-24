@@ -181,7 +181,10 @@ const ChatPageModern = () => {
     setConversationId(conversation.id);
     setInitialMessage(null);
 
-    if (Array.isArray(conversation.messages) && conversation.messages.length > 0) {
+    if (
+      Array.isArray(conversation.messages) &&
+      conversation.messages.length > 0
+    ) {
       setSelectedConversationMessages(conversation.messages);
       return;
     }
@@ -194,7 +197,9 @@ const ChatPageModern = () => {
       setSelectedConversationMessages(loadedMessages);
       setConversations((prev) =>
         prev.map((item) =>
-          item.id === conversation.id ? { ...item, messages: loadedMessages } : item,
+          item.id === conversation.id
+            ? { ...item, messages: loadedMessages }
+            : item,
         ),
       );
     } catch (error) {
@@ -211,7 +216,9 @@ const ChatPageModern = () => {
       await chatAPI.deleteConversation(conversationIdToDelete);
 
       setConversations((prev) =>
-        prev.filter((conversation) => conversation.id !== conversationIdToDelete),
+        prev.filter(
+          (conversation) => conversation.id !== conversationIdToDelete,
+        ),
       );
 
       if (selectedConversation?.id === conversationIdToDelete) {
@@ -396,7 +403,8 @@ const ChatPageModern = () => {
           ))}
           {filteredConversations.length > conversationDisplayLimit && (
             <div className="p-3 text-center text-xs text-[#6b7f97] border-t border-white/50 bg-white/60">
-              Showing {conversationDisplayLimit} of {filteredConversations.length} conversations
+              Showing {conversationDisplayLimit} of{" "}
+              {filteredConversations.length} conversations
             </div>
           )}
         </div>
