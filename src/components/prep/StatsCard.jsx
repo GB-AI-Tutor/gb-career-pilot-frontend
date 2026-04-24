@@ -188,13 +188,8 @@ const StatsCard = ({ title, value, subtitle, icon }) => {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#000a1e]/40 mb-1">
-    <div className="bg-white rounded-2xl p-8 transition-all duration-500 hover:-translate-y-1 shadow-[0_24px_48px_-12px_rgba(0,10,30,0.04)]">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#000a1e]/40 mb-1">
             {title}
           </p>
-          <p className="text-4xl font-manrope font-black text-[#000a1e] mb-1">
           <p className="text-4xl font-manrope font-black text-[#000a1e] mb-1">
             {value}
           </p>
@@ -208,13 +203,10 @@ const StatsCard = ({ title, value, subtitle, icon }) => {
         {icon && (
           <div className="w-12 h-12 rounded-2xl bg-[#f3f4f5] flex items-center justify-center text-[#000a1e]">
             {createElement(icon, { className: "w-6 h-6", strokeWidth: 2.5 })}
-          <div className="w-12 h-12 rounded-2xl bg-[#f3f4f5] flex items-center justify-center text-[#000a1e]">
-            {createElement(icon, { className: "w-6 h-6", strokeWidth: 2.5 })}
           </div>
         )}
       </div>
     </div>
   );
 };
-
 export default StatsCard;
