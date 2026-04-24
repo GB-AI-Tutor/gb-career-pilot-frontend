@@ -480,7 +480,7 @@ const RegisterModern = () => {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-body-md text-neutral-600">
-                        FSC %:
+                        FSC/SSC %:
                       </span>
                       <span className="text-body-md font-semibold text-primary-900">
                         {formData.fsc_percentage || "--"}
@@ -562,7 +562,7 @@ const RegisterModern = () => {
                     htmlFor="fsc_percentage"
                     className="block text-body-md font-semibold text-primary-900 mb-2"
                   >
-                    FSC Percentage
+                    FSC/SSC Percentage
                   </label>
                   <div className="relative">
                     <GraduationCap className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />

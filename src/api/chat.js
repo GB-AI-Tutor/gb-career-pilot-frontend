@@ -9,6 +9,22 @@ export const chatAPI = {
     return response.data;
   },
 
+  // Get messages for one conversation
+  getConversationMessages: async (conversationId) => {
+    const response = await apiClient.get(
+      `${GROQ_BASE}/conversations/${conversationId}`,
+    );
+    return response.data;
+  },
+
+  // Delete one conversation
+  deleteConversation: async (conversationId) => {
+    const response = await apiClient.post(`${GROQ_BASE}/delete-conversation`, null, {
+      params: { conv_id: conversationId },
+    });
+    return response.data;
+  },
+
   // Send chat message (streaming)
   sendMessage: async (messages, conversationId = null) => {
     const payload = {
