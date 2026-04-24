@@ -296,7 +296,6 @@ const TestTaking = () => {
             </div>
           </div>
           <TestTimer deadlineMs={timerDeadline} onExpire={handleTimerExpire} />
-          <TestTimer deadlineMs={timerDeadline} onExpire={handleTimerExpire} />
         </div>
       </div>
 
@@ -309,49 +308,48 @@ const TestTaking = () => {
             questionNumber={currentQuestionIndex + 1}
             onReport={handleReportQuestion}
           />
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-8 space-y-8">
-          <QuestionDisplay
-            question={currentQuestion}
-            selectedAnswer={answers[currentQuestion?.id]}
-            onAnswerSelect={handleAnswerSelect}
-            questionNumber={currentQuestionIndex + 1}
-            onReport={handleReportQuestion}
-          />
 
-          <div className="flex justify-between items-center bg-[#f3f4f5] p-4 rounded-2xl">
-            <button
+          {/* Navigation Buttons - Desktop */}
+          <div className="hidden md:flex items-center justify-between">
+            <Button
+              variant="secondary"
               onClick={goToPreviousQuestion}
               disabled={currentQuestionIndex === 0}
-              className="flex items-center gap-2 font-bold text-[#000a1e] px-6 py-3 disabled:opacity-20"
             >
-              <ChevronLeft className="w-5 h-5" /> Previous
-            </button>
-            <button
-              onClick={handleSubmit}
-              className="px-8 py-3 bg-gradient-to-br from-[#002147] to-[#000a1e] text-white rounded-xl font-bold shadow-lg hover:scale-105 transition-transform"
-            >
-              Submit Examination
-            </button>
-            <button
+              <ChevronLeft className="w-4 h-4 mr-1" />
+              Previous
+            </Button>
+
+            <div className="flex gap-2">
+              <Button
+                variant="secondary"
+                onClick={() => autosaveMutation.mutate({ attemptId, answers })}
+              >
+                <Save className="w-4 h-4 mr-1" />
+                Save Progress
+              </Button>
+
+              <Button onClick={handleSubmit} disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <Loader2 className="w-4 h-4 mr-1 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4 mr-1" />
+                )}
+                Submit Test
+              </Button>
+            </div>
+
+            <Button
+              variant="secondary"
               onClick={goToNextQuestion}
               disabled={currentQuestionIndex === questions.length - 1}
-              className="flex items-center gap-2 font-bold text-[#000a1e] px-6 py-3 disabled:opacity-20"
             >
-              Next <ChevronRight className="w-5 h-5" />
-            </button>
+              Next
+              <ChevronRight className="w-4 h-4 ml-1" />
+            </Button>
           </div>
         </div>
 
-        <div className="lg:col-span-4">
-          <QuestionGrid
-            questions={questions}
-            answers={answers}
-            currentIndex={currentQuestionIndex}
-            onNavigate={goToQuestion}
-          />
-        </div>
-      </div>
         <div className="lg:col-span-4">
           <QuestionGrid
             questions={questions}

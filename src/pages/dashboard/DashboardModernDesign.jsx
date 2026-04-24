@@ -198,8 +198,7 @@ const DashboardModernDesign = () => {
                       </p>
                       <div className="flex gap-2">
                         <span className="px-2 py-1 bg-[#e7e8e9] rounded text-[10px] font-bold text-[#44474e] uppercase">
-                          Top 10 Nationally
-                          Top 10 Nationally
+                          Top 10 Nationally Top 10 Nationally
                         </span>
                         <span className="px-2 py-1 bg-[#e7e8e9] rounded text-[10px] font-bold text-[#44474e] uppercase">
                           Safety Tier
@@ -303,7 +302,6 @@ const DashboardModernDesign = () => {
                       </p>
                     </div>
                   </div>
-                </div> */}
                 </div> */}
                 <button className="w-full mt-8 py-3 bg-gradient-to-br from-[#002147] to-[#000a1e] text-white font-bold rounded-xl transition-all hover:opacity-90">
                   Sync to Calendar
