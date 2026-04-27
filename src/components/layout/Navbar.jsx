@@ -13,6 +13,7 @@ import {
   LayoutDashboard,
   BookOpen,
   Flag,
+  Info,
 } from "lucide-react";
 import Button from "../common/Button";
 
@@ -28,14 +29,19 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  const navLinks = [
+  const authNavLinks = [
     { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { to: "/chat", label: "AI Chat", icon: MessageSquare },
     { to: "/universities", label: "Universities", icon: GraduationCap },
     { to: "/programs", label: "Programs", icon: Search },
     { to: "/prep", label: "Test Prep", icon: BookOpen },
+    { to: "/about", label: "About", icon: Info },
     { to: "/report-issue", label: "Report Issue", icon: Flag },
   ];
+
+  const publicNavLinks = [{ to: "/about", label: "About", icon: Info }];
+
+  const navLinks = isAuthenticated ? authNavLinks : publicNavLinks;
 
   const isActive = (path) =>
     location.pathname === path || location.pathname.startsWith(`${path}/`);
@@ -128,7 +134,11 @@ const Navbar = () => {
                 )}
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="hidden sm:flex items-center gap-2">
+                <Link to="/about" className={navLinkClass("/about")}>
+                  <Info className="w-4 h-4" />
+                  About
+                </Link>
                 <Link to="/login">
                   <Button variant="secondary" size="sm">
                     Login
@@ -141,23 +151,21 @@ const Navbar = () => {
             )}
 
             {/* Mobile menu button */}
-            {isAuthenticated && (
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                {mobileMenuOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
-            )}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {isAuthenticated && mobileMenuOpen && (
+        {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-700">
             {navLinks.map(({ to, label, icon }) => {
               return (
@@ -176,6 +184,19 @@ const Navbar = () => {
                 </Link>
               );
             })}
+
+            {!isAuthenticated && (
+              <div className="mt-3 px-4 flex flex-col gap-2">
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="secondary" className="w-full justify-center">
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/register" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full justify-center">Get Started</Button>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>

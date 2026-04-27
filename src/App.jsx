@@ -24,6 +24,7 @@ import TestTakingModern from "./pages/prep/TestTakingModern";
 import TestResultsModern from "./pages/prep/TestResultsModern";
 import ProgressPageModern from "./pages/prep/ProgressPageModern";
 import NotFound from "./pages/NotFound";
+import AboutPage from "./pages/AboutPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +45,7 @@ function App() {
             <Routes>
               <Route path="/" element={<LandingPageModern />} />
               <Route path="/home" element={<LandingPageModern />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/login" element={<LoginModern />} />
               <Route path="/register" element={<RegisterModern />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
