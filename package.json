@@ -54,6 +54,7 @@
     "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2",
     "vite": "^8.0.1",
+    "vite-plugin-sitemap": "^0.8.2",
     "vitest": "^2.1.8"
   }
 }
